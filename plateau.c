@@ -4,15 +4,14 @@
 #include "plateau.h"
 
 struct plateau {
-    unsigned int longueur;
-    unsigned int hauteur ;
-    char *nom;
-    int objectif_soleil;
-    int objectif_fraise;
-    int objectif_pomme;
-    int objectif_oignon;
-    int objectif_mandarine;
-    int plateau[longueur][hauteur];
+    unsigned int longueur; //longeur plateau
+    unsigned int hauteur ; //hauteur plateau
+    char *nom; // nom du plateau
+    int objectif_soleil; // quantité de soleil demandé pour le contract
+    int objectif_fraise; // quantité de fraise demandé pour le contract
+    int objectif_pomme; // quantité de pomme demandé pour le contract
+    int objectif_oignon; // quantité de oignon demandé pour le contract
+    int objectif_mandarine; // quantité de mandarine demandé pour le contract
 };
 
 
