@@ -4,11 +4,15 @@
 
 #ifndef PLATEAU_H
 #define PLATEAU_H
+
 //taille tableau
 #define longueur 45
 #define hauteur 25
 
-//
-int plateau[longueur][hauteur];
+
+//fonction
+void cree_plateau();
+void init_plateau();
+void display_plateau();
 
 #endif //PLATEAU_H

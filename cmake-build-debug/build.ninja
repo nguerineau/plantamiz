@@ -61,6 +61,12 @@ build CMakeFiles/plantamiz.dir/plateau.c.obj: C_COMPILER__plantamiz_unscanned_De
   OBJECT_DIR = CMakeFiles\plantamiz.dir
   OBJECT_FILE_DIR = CMakeFiles\plantamiz.dir
 
+build CMakeFiles/plantamiz.dir/pion.c.obj: C_COMPILER__plantamiz_unscanned_Debug C$:/Users/nicol/OneDrive/Documents/GitHub/plantamiz/pion.c || cmake_object_order_depends_target_plantamiz
+  DEP_FILE = CMakeFiles\plantamiz.dir\pion.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\plantamiz.dir
+  OBJECT_FILE_DIR = CMakeFiles\plantamiz.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target plantamiz
@@ -69,7 +75,7 @@ build CMakeFiles/plantamiz.dir/plateau.c.obj: C_COMPILER__plantamiz_unscanned_De
 #############################################
 # Link the executable plantamiz.exe
 
-build plantamiz.exe: C_EXECUTABLE_LINKER__plantamiz_Debug CMakeFiles/plantamiz.dir/main.c.obj CMakeFiles/plantamiz.dir/plateau.c.obj
+build plantamiz.exe: C_EXECUTABLE_LINKER__plantamiz_Debug CMakeFiles/plantamiz.dir/main.c.obj CMakeFiles/plantamiz.dir/plateau.c.obj CMakeFiles/plantamiz.dir/pion.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\plantamiz.dir

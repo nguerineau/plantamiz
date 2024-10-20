@@ -4,6 +4,11 @@
 
 #include "plateau.h"
 
+void cree_plateau() {
+
+
+}
+
 void init_plateau() {
 
 
