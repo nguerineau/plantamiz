@@ -3,4 +3,6 @@ project(plantamiz C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(plantamiz main.c)
+add_executable(plantamiz main.c
+        plateau.c
+        plateau.h)

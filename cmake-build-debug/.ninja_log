@@ -1,3 +1,5 @@
 # ninja log v6
-5	100	7511245453808835	CMakeFiles/plantamiz.dir/main.c.obj	c43f38d1161449ed
-103	231	7511245454789709	plantamiz.exe	ed0dbad49a10009e
+3	100	7511354535639467	CMakeFiles/plantamiz.dir/main.c.obj	c43f38d1161449ed
+100	226	7511354536618580	plantamiz.exe	ed0dbad49a10009e
+19	107	7511355413877046	CMakeFiles/plantamiz.dir/plateau.c.obj	2c348948cb3dfc8
+107	246	7511355414757858	plantamiz.exe	cd3bb202cbfd52c6
