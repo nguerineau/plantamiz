@@ -5,10 +5,6 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-//taille tableau
-#define longueur 45
-#define hauteur 25
-
 
 //fonction
 void cree_plateau();
