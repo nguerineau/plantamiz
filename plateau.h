@@ -11,7 +11,6 @@
 
 
 //fonction
-void cree_plateau();
 void init_plateau();
 void display_plateau();
 

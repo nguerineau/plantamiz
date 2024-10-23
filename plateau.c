@@ -16,11 +16,6 @@ struct plateau { // revoir l'utilité de cettet element
 };
 
 
-void cree_plateau() {
-
-
-}
-
 void init_plateau(int tableau[ligne][colonne]) {
     int i, j;
     for (i = 0; i < ligne; i++) {
