@@ -3,6 +3,9 @@
 #include "pion.h"
 
 int main(void) {
-    printf("Hello, ME\n");
+    int plateau[ligne][colonne];
+    init_plateau(plateau);
+    display_plateau(plateau);
+    while(1);
     return 0;
 }

@@ -5,6 +5,10 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
+#define ligne 25
+#define colonne 45
+
+
 
 //fonction
 void cree_plateau();
