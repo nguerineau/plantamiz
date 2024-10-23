@@ -33,6 +33,7 @@ void init_plateau(int tableau[ligne][colonne]) {
 
 void display_plateau(int tableau[ligne][colonne]) {
     int i,j;
+    printf("                                        PLANTAMIZ \n");
     for(i=0; i<ligne;i++){
         for(j=0; j<colonne; j++){
             printf("%2d",tableau[i][j]);
