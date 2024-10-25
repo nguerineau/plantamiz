@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+#include "Menu.h"
 
 int main(void) {
     /**
@@ -12,7 +13,7 @@ int main(void) {
     display_plateau(plateau);
     while(1);
     **/
-
+    Menu();
     char grid[ROWS][COLS];
 
     // Initialiser le générateur de nombres aléatoires
