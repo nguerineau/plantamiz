@@ -21,5 +21,6 @@ int main(void) {
     // Initialisation et affichage de la grille
     initializeGrid(grid);
     displayGrid(grid);
-    return 0;
+    while(1);// to keep the display actif for debug purpuses only
+    //return 0;
 }
