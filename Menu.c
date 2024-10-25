@@ -12,6 +12,7 @@ void Menu() {
     printf("\t4 - Regles du jeu\n\n");
     printf("Saisir votre choix ?\n");
     scanf("%d", &choix);
+
     switch (choix) {
         case 1:
             printf("Vous lancez une nouvelle partie !\n");
@@ -27,6 +28,7 @@ void Menu() {
         break;
         default:
             printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+
         break;
     }
 
