@@ -47,6 +47,15 @@ void display_plateau(int tableau[ligne][colonne]) {
 char items[] = {'S', 'F', 'P', 'O', 'M'};
 
 
+
+void gotolicol(int x, int y)
+{
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 // Fonction pour changer la couleur dans la console
 void color(int couleurDuTexte, int couleurDeFond) {
     HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -104,3 +113,201 @@ void displayGrid(char grid[ROWS][COLS]) {
     color(15, 0); // Remettre le texte en blanc
 }
 
+void Score(int points, int pointsItem[5], int vie) {
+          int S=pointsItem[0];// point pour item soleil
+          int F=pointsItem[1];// point pour item fraise
+          int P=pointsItem[2];// point pour item pomme
+          int O=pointsItem[3];// point pour item oignon
+          int M=pointsItem[4]; // point pour item mandarine
+    printf("Points Totals: %d\n", points);
+    printf("Soleil: %d\n Fraise: %d\n Pomme: %d\n Oignon: %d\n Mandarine:%d\n",S, F, P, O, M);
+    printf("Vies restantes: %d\n", vie);
+}
+
+void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacement un item
+    switch(deplacement) {
+
+    case 'z':
+    case 72: // CODE ANSI (fleche haut)
+        if (*curseurY > 0)
+            (*curseurY)--; // deplacement vers le haut
+        break;
+
+    case 's':
+    case 80: // CODE ANSI (fleche bas)
+        if (*curseurY < ROWS - 1)
+            (*curseurY)++; // deplacement vers le bas
+        break;
+
+    case 'd':
+    case 77: // CODE ANSI (fleche droite)
+         if (*curseurX < COLS - 1)
+            (*curseurX)++; // deplacement vers la droite
+         break;
+
+
+    case 'q':
+    case 75: // CODE ANSI (fleche gauche)
+         if (*curseurX > 0)
+         (*curseurX)--; // deplacement vers la gauche
+     break;
+    }
+}
+
+void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[5]) {
+    int ItemCompter[ROWS][COLS] = {0}; // éviter de recompter les points ( items déjà compté)
+
+    // Vérification des groupement items à horizontal
+    for (int ligne = 0; ligne < ROWS; ligne++) {
+    for (int colonne = 0; colonne < COLS - 2; colonne++) {// compter jusqu'a deux colonnes avant la fin ( nécesitant mininum ça pour faire  un groupement de 3)
+        if (grid[ligne][colonne] == grid[ligne][colonne + 1] && grid[ligne][colonne] == grid[ligne][colonne + 2]) {//vérifie si les 3 items proche sont identiques
+            int compteurPoint = 3;// compter trois points
+            while (colonne + compteurPoint < COLS && grid[ligne][colonne] == grid[ligne][colonne + compteurPoint]) {
+                compteurPoint++; // continer de compter tant qu les items proche sont identiques
+                }
+            if (compteurPoint >= 4) {
+                *points ++= compteurPoint; // 1 point par item
+                 pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
+                for (int k = 0; k < compteurPoint; k++) {
+                    ItemCompter[ligne][colonne + k] = 1;
+                    }
+                }
+                colonne += compteurPoint - 1; // Sauter les items déjà comptés
+            }
+        }
+    }
+
+    // Vérification des groupement items à la vertical
+    for (int colonne = 0; colonne < COLS; colonne++) {
+        for (int ligne = 0; ligne < ROWS - 2; ligne++) {// compter jusqu'a deux lignes avant la fin ( nécesitant mininum ça pour faire les groupements de 3)
+            if (grid[ligne][colonne] == grid[ligne + 1][colonne] && grid[ligne][colonne] == grid[ligne + 2][colonne]) {//vérifie si les 3 items sont identiques
+                int compteurPoint=3;
+                while (ligne + compteurPoint < ROWS && grid[ligne][colonne] == grid[ligne + compteurPoint][colonne]) {
+                    compteurPoint++;
+                    }
+                if (compteurPoint >= 4) {
+                    *points += compteurPoint; // on compte 1 point par item
+                    pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
+                    for (int k = 0; k < compteurPoint; k++) {
+                        ItemCompter[ligne + k][colonne] = 1;
+                    }
+                }
+                ligne += compteurPoint - 1; // Sauter les items déjà comptés
+            }
+        }
+    }
+
+    // Suppression des items comptés
+    for (int ligne = 0; ligne < ROWS; ligne++) {
+        for (int colonne = 0; colonne < COLS; colonne++) {
+            if (ItemCompter[ligne][colonne]) {
+                grid[ligne][colonne] = ' '; // Suppression ou remplacer par des items aléatoire par dessus
+            }
+        }
+    }
+}
+
+void TomberItems(char grid[ROWS][COLS]) {// fonction permettant de remplir  les espaces vides du aux items regroupé par d'autres items aléatoire
+    for (int colonne = 0; colonne < COLS; colonne++) {
+    for (int ligne = ROWS - 1; ligne >= 0; ligne--) {// parcours en commençant par la derniere ligne du plataux et monte vers le haut ( vers la première ligne)
+        if (grid[ligne][colonne] == ' ') {// si espace vide
+        for (int k = ligne - 1; k >= 0; k--) {// parcours LE DESSUS de l'espace vide pour trouver un items présent
+            if (grid[k][colonne] != ' ') {// si il n'y a pas espace vide
+                grid[ligne][colonne] = grid[k][colonne];
+                grid[k][colonne] = ' ';// déplacer cet item present dans espace vide
+        break;// seul le PREMIER item détécté est déplacé
+            }
+        }
+    }
+}
+}
+    //parcourir les lignes et colonnes du plateaux
+    for (int colonne = 0; colonne < COLS; colonne++) {
+    for (int ligne = 0; ligne < ROWS; ligne++) {
+        if (grid[ligne][colonne] == ' ') {// si il ya un espace vide
+            grid[ligne][colonne] = generateRandomItem();// remplir ces espaces vides par des items aléatoire
+            }
+        }
+    }
+}
+
+// Fonction pour vérifier et marquer les rectangles
+void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[5]) {
+    int largeur = 0;
+    int hauteur = 0;
+    int ItemCompter[ROWS][COLS] = {0}; // éviter de recompter les points ( items déjà compté)
+
+    for (int ligne = 0; ligne < ROWS; ligne++) {
+    for (int colonne = 0; colonne < COLS; colonne++) {
+        if (grid[ligne][colonne] != ' ' && !ItemCompter[ligne][colonne]) {// vérifie si la case n'est pas vide et pas compté
+            char item = grid[ligne][colonne];
+
+            // but : trouver la largeur du rectangle
+        while (colonne + largeur < COLS && grid[ligne][colonne + largeur] == item) {// compter les items identique dans les lignes
+            largeur++;// prendre ça dans la largeur
+            }
+
+                // but : trouver la hauteur du rectangle
+        while (ligne + hauteur < ROWS && grid[ligne + hauteur][colonne] == item) {//pour chaque ligne des items , on vérifie si la colonne est identique à sa largeur (meme nature)
+            int k;
+        for (k = 0; k < largeur; k++) {
+         if (grid[ligne + hauteur][colonne + k] != item) {// on sort de la boucle si la largeur des items ne correspond à ces colonnes ( hauteur)
+            break;
+                    }
+                }
+        if (k == largeur) // si la largeur items est également la meme avec sa hauteur ( meme nature colonne et ligne)
+            hauteur++;// augmenter la hauteur pour prendre le plus possible
+            else
+                break;
+            }
+
+                // étape: avoir le rectangle
+                if (largeur >= 2 && hauteur >= 2) {
+            int compteurPoint = largeur * hauteur; // Nombre d'items dans le rectangle ( LARGEUR X HAUTEUR)
+            *points += compteurPoint; // Ajouter les points
+            pointsItem[item - 'S'] += compteurPoint; // Mise à jour des points par item
+
+
+            for (int h = 0; h < hauteur; h++) {// comptabiliser les items comptés
+                for (int l = 0; l < largeur; l++) {
+                    ItemCompter[ligne + h][colonne + l] = 1;
+                }
+            }
+        }
+
+
+                colonne += largeur - 1; // Sauter les items déjà comptés
+            }
+        }
+    }
+
+    // Suppression des items comptés
+    for (int ligne = 0; ligne < ROWS; ligne++) {
+        for (int colonne = 0; colonne < COLS; colonne++) {
+            if (ItemCompter[ligne][colonne]) {
+                grid[ligne][colonne] = ' '; // Suppression du groupement items
+            }
+        }
+    }
+}
+
+
+
+int finNiveau(int points, int *vie) {
+    if (points >= POINTS_NIVEAU_REQUIS) {
+        printf("BRAVO CHAMPION , Niveau suivant atteint\n");
+
+        // AYYUB ICI TU FAIS LA SAUVEGARDE
+
+        return 1;
+    } else {
+        printf("Vous avez pas atteint le score. vous avez eprdu une vie \n");
+        (*vie)-1; // Une vie perdu
+
+        if (*vie == 0) {
+            printf("Vous avez perdu toutes vos vies. Fin du jeu.\n");
+            return -1 ; // Fin du jeu
+        }
+        return 0; // échoué
+    }
+}

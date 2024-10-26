@@ -1,3 +1,3 @@
 CMakeFiles/plantamiz.dir/pion.c.obj: \
- C:\Users\ayyub\Desktop\ING\ 3\Algo\ C\Projet\plantamiz\pion.c \
- C:\Users\ayyub\Desktop\ING\ 3\Algo\ C\Projet\plantamiz\pion.h
+ C:\Users\Walid\ BENSAID\CLionProjects\plantamiz\pion.c \
+ C:\Users\Walid\ BENSAID\CLionProjects\plantamiz\pion.h

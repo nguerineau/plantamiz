@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/ayyub/Desktop/ING 3/Algo C/Projet/plantamiz/Menu.c" "CMakeFiles/plantamiz.dir/Menu.c.obj" "gcc" "CMakeFiles/plantamiz.dir/Menu.c.obj.d"
-  "C:/Users/ayyub/Desktop/ING 3/Algo C/Projet/plantamiz/main.c" "CMakeFiles/plantamiz.dir/main.c.obj" "gcc" "CMakeFiles/plantamiz.dir/main.c.obj.d"
-  "C:/Users/ayyub/Desktop/ING 3/Algo C/Projet/plantamiz/pion.c" "CMakeFiles/plantamiz.dir/pion.c.obj" "gcc" "CMakeFiles/plantamiz.dir/pion.c.obj.d"
-  "C:/Users/ayyub/Desktop/ING 3/Algo C/Projet/plantamiz/plateau.c" "CMakeFiles/plantamiz.dir/plateau.c.obj" "gcc" "CMakeFiles/plantamiz.dir/plateau.c.obj.d"
+  "C:/Users/Walid BENSAID/CLionProjects/plantamiz/Menu.c" "CMakeFiles/plantamiz.dir/Menu.c.obj" "gcc" "CMakeFiles/plantamiz.dir/Menu.c.obj.d"
+  "C:/Users/Walid BENSAID/CLionProjects/plantamiz/main.c" "CMakeFiles/plantamiz.dir/main.c.obj" "gcc" "CMakeFiles/plantamiz.dir/main.c.obj.d"
+  "C:/Users/Walid BENSAID/CLionProjects/plantamiz/pion.c" "CMakeFiles/plantamiz.dir/pion.c.obj" "gcc" "CMakeFiles/plantamiz.dir/pion.c.obj.d"
+  "C:/Users/Walid BENSAID/CLionProjects/plantamiz/plateau.c" "CMakeFiles/plantamiz.dir/plateau.c.obj" "gcc" "CMakeFiles/plantamiz.dir/plateau.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

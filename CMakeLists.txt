@@ -9,4 +9,8 @@ add_executable(plantamiz main.c
         pion.c
         pion.h
         Menu.h
-        Menu.c)
+        Menu.c
+        plateau.c
+        plateau.c
+        Selection_cordonnées.h
+        Selection_cordonnées.h)
