@@ -77,6 +77,18 @@ int main(void)
 
         }
         break;
+
+        case 2:
+        break;
+
+        case 3:
+        break;
+
+        case 4://regle du jeu
+            affichage_regle_du_jeu();
+
+        break;
+
     }
 
         return 0;

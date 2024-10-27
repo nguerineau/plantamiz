@@ -17,22 +17,18 @@ int Menu() {
         case 1:
             printf("Vous lancez une nouvelle partie !\n");
         return 1;
-        break;
 
         case 2:
             printf("Vous chargez une partie !\n");
         return 2;
-        break;
 
         case 3:
             printf("Entrez le mot de passe de la partie \n");
         return 3;
-        break;
 
         case 4:
             printf("Voici les regles du jeu \n");
         return 4;
-        break;
 
         default:
             printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
@@ -44,6 +40,10 @@ int Menu() {
 // Fonction pour afficher le menu et selectionner un choix
 
 
-
+void affichage_regle_du_jeu() {
+    printf("-----------------regle du jeu-----------------\n");
+    printf(" les regles ... vazs falloir les ajouter.\n");
+    
+}
 
 
