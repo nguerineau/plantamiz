@@ -6,7 +6,7 @@
 #define PION_H
 
 enum pion {
-    soleil, fraise, pomme, oignons, mandarine
+    soleil, fraise, pomme, oignons, mandarine, nombreTotalPion
 };
 
 #endif //PION_H

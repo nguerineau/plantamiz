@@ -288,8 +288,10 @@ CMakeFiles/plantamiz.dir/main.c.obj: C:/Users/Walid\ BENSAID/CLionProjects/plant
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wow64apiset.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wtypes.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wtypesbase.h \
+  C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Contrat_plateau.h \
   C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Menu.h \
   C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Selection_cordonnées.h \
+  C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.h \
   C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/plateau.h
 
 CMakeFiles/plantamiz.dir/pion.c.obj: C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.c \
@@ -566,6 +568,8 @@ CMakeFiles/plantamiz.dir/plateau.c.obj: C:/Users/Walid\ BENSAID/CLionProjects/pl
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wow64apiset.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wtypes.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wtypesbase.h \
+  C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Contrat_plateau.h \
+  C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.h \
   C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/plateau.h
 
 
@@ -1123,8 +1127,10 @@ C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2024.2.2/bin/mingw/x86_64-w64-mingw32/include/wtypesbase.h:
 
+C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Contrat_plateau.h:
+
 C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/Selection_cordonnées.h:
 
-C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.c:
-
 C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.h:
+
+C:/Users/Walid\ BENSAID/CLionProjects/plantamiz/pion.c:

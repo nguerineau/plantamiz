@@ -5,6 +5,8 @@
 #include "plateau.h"
 #include <stdlib.h>
 #include <time.h>
+#include "Contrat_plateau.h"
+#include "pion.h"
 #include <windows.h> // Pour la gestion des couleurs
 
 /***
@@ -45,15 +47,22 @@ void display_plateau(int tableau[ligne][colonne]) {
 
 // Liste des items
 char items[] = {'S', 'F', 'P', 'O', 'M'};
+int niveau=0;
+ContratPlateau contrats[] = {
+    {{20, 0, 0, 50, 20}, 30}, // Contrat pour le plateau niveau 1
+    {{55, 30, 35, 45, 0}, 40}, // Contrat pour le plateau niveau 2
+    {{70, 0, 60, 0, 50}, 50} }; // Contrat pour le plateau niveau 3
 
-
-
-void gotolicol(int x, int y)
+void gotolicol(int x, int y)//permetttant de positionner le curseur dans la console
 {
     COORD coord;
     coord.X = x;
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+void AffichageCurseur(int curseurX, int curseurY) {
+    gotolicol(curseurX * 2, curseurY + 1); // Ajuste pour l'espacement
+    printf("^"); // Ou un autre symbole pour le curseur
 }
 
 // Fonction pour changer la couleur dans la console
@@ -96,6 +105,7 @@ void initializeGrid(char grid[ROWS][COLS]) {
 
 // Fonction pour afficher la grille avec couleurs
 void displayGrid(char grid[ROWS][COLS]) {
+    system("cls");
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             // Attribution des couleurs en fonction des items
@@ -113,12 +123,18 @@ void displayGrid(char grid[ROWS][COLS]) {
     color(15, 0); // Remettre le texte en blanc
 }
 
-void Score(int points, int pointsItem[5], int vie) {
-          int S=pointsItem[0];// point pour item soleil
-          int F=pointsItem[1];// point pour item fraise
-          int P=pointsItem[2];// point pour item pomme
-          int O=pointsItem[3];// point pour item oignon
-          int M=pointsItem[4]; // point pour item mandarine
+void Instruction() {
+    gotolicol(0, ROWS + 4); // Positionne l'affichage un peu plus bas
+    printf("Entrez votre deplacement: fleche haut a ou z | fleche bas ou s | fleche gauche ou q | fleche droit ou d et validez avec la barre d'espace : ");
+
+}
+void Score(int points, int pointsItem[nombreTotalPion], int vie) {
+         gotolicol(0, ROWS + 1);
+          int S=pointsItem[soleil];// point pour item soleil
+          int F=pointsItem[fraise];// point pour item fraise
+          int P=pointsItem[pomme];// point pour item pomme
+          int O=pointsItem[oignons];// point pour item oignon
+          int M=pointsItem[mandarine]; // point pour item mandarine
     printf("Points Totals: %d\n", points);
     printf("Soleil: %d\n Fraise: %d\n Pomme: %d\n Oignon: %d\n Mandarine:%d\n",S, F, P, O, M);
     printf("Vies restantes: %d\n", vie);
@@ -154,7 +170,7 @@ void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacemen
     }
 }
 
-void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[5]) {
+void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
     int ItemCompter[ROWS][COLS] = {0}; // éviter de recompter les points ( items déjà compté)
 
     // Vérification des groupement items à horizontal
@@ -163,7 +179,7 @@ void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[5]) {
         if (grid[ligne][colonne] == grid[ligne][colonne + 1] && grid[ligne][colonne] == grid[ligne][colonne + 2]) {//vérifie si les 3 items proche sont identiques
             int compteurPoint = 3;// compter trois points
             while (colonne + compteurPoint < COLS && grid[ligne][colonne] == grid[ligne][colonne + compteurPoint]) {
-                compteurPoint++; // continer de compter tant qu les items proche sont identiques
+                compteurPoint++; // continuer de compter tant que les items proche sont identiques
                 }
             if (compteurPoint >= 4) {
                 *points ++= compteurPoint; // 1 point par item
@@ -185,7 +201,7 @@ void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[5]) {
                 while (ligne + compteurPoint < ROWS && grid[ligne][colonne] == grid[ligne + compteurPoint][colonne]) {
                     compteurPoint++;
                     }
-                if (compteurPoint >= 4) {
+                if (compteurPoint > 3) {
                     *points += compteurPoint; // on compte 1 point par item
                     pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
                     for (int k = 0; k < compteurPoint; k++) {
@@ -232,7 +248,7 @@ void TomberItems(char grid[ROWS][COLS]) {// fonction permettant de remplir  les 
 }
 
 // Fonction pour vérifier et marquer les rectangles
-void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[5]) {
+void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
     int largeur = 0;
     int hauteur = 0;
     int ItemCompter[ROWS][COLS] = {0}; // éviter de recompter les points ( items déjà compté)
@@ -290,10 +306,16 @@ void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[5]) 
         }
     }
 }
+int Contrats(int pointsItem[nombreTotalPion], int coups) {
 
-
-
-int finNiveau(int points, int *vie) {
+    for (int i = 0; i < nombreTotalPion; i++) {// Vérifie si les objectifs du contrat  sont atteints
+        if (pointsItem[i] < contrats[niveau].objectifsContrat[i]) {
+            return 0; // Contrat non atteint
+        }
+    }
+    return coups <= contrats[niveau].coupsMax; // Vérifie si le nombre de coups est respecté
+}
+/*int finNiveau(int points, int *vie) {
     if (points >= POINTS_NIVEAU_REQUIS) {
         printf("BRAVO CHAMPION , Niveau suivant atteint\n");
 
@@ -310,4 +332,4 @@ int finNiveau(int points, int *vie) {
         }
         return 0; // échoué
     }
-}
+}*/
