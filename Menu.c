@@ -2,6 +2,8 @@
 // Created by ayyub on 20/10/2024.
 //
 #include "Menu.h"
+#include <conio.h>
+#include <stdio.h>
 
 int Menu() {
     int choix;
@@ -43,7 +45,20 @@ int Menu() {
 void affichage_regle_du_jeu() {
     printf("-----------------regle du jeu-----------------\n");
     printf(" les regles ... vazs falloir les ajouter.\n");
-    
+
+    printf("Appuyez sur 'p' pour quitter.\n");
+
+    while (1) {
+        // Boucle infinie
+        if (_kbhit()) { // Vérifie si une touche est pressée
+            char c = _getch(); // Récupère la touche pressée
+            if (c == 'p') {
+                printf("\nSortie des regle du jeu.\n");
+                break; // Quitte la boucle
+            }
+        }
+    }
 }
+
 
 
