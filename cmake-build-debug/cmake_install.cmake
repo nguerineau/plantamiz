@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Walid BENSAID/CLionProjects/plantamiz
+# Install script for directory: C:/Users/nicol/OneDrive/Documents/GitHub/plantamiz
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Walid BENSAID/CLionProjects/plantamiz/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/nicol/OneDrive/Documents/GitHub/plantamiz/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -3,7 +3,7 @@
 //
 #include "Menu.h"
 
-void Menu() {
+int Menu() {
     int choix;
     printf("\t-----------------MENU-----------------\n");
     printf("\t1 - Nouvelle partie\n");
@@ -16,16 +16,24 @@ void Menu() {
     switch (choix) {
         case 1:
             printf("Vous lancez une nouvelle partie !\n");
+        return 1;
         break;
+
         case 2:
             printf("Vous chargez une partie !\n");
+        return 2;
         break;
+
         case 3:
             printf("Entrez le mot de passe de la partie \n");
+        return 3;
         break;
+
         case 4:
             printf("Voici les regles du jeu \n");
+        return 4;
         break;
+
         default:
             printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
 
