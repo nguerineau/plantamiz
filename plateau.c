@@ -62,7 +62,7 @@ void gotolicol(int x, int y)//permetttant de positionner le curseur dans la cons
 }
 void AffichageCurseur(int curseurX, int curseurY) {
     gotolicol(curseurX * 2, curseurY + 1); // Ajuste pour l'espacement
-    printf("^"); // Ou un autre symbole pour le curseur
+    printf("^"); //  symbole pour le curseur
 }
 
 // Fonction pour changer la couleur dans la console
@@ -247,7 +247,7 @@ void TomberItems(char grid[ROWS][COLS]) {// fonction permettant de remplir  les 
     }
 }
 
-// Fonction pour vérifier et marquer les rectangles
+// Fonction pour faire des groupement de rectangle
 void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
     int largeur = 0;
     int hauteur = 0;
@@ -297,7 +297,7 @@ void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[nomb
         }
     }
 
-    // Suppression des items comptés
+    // Supprimer des items comptés
     for (int ligne = 0; ligne < ROWS; ligne++) {
         for (int colonne = 0; colonne < COLS; colonne++) {
             if (ItemCompter[ligne][colonne]) {
@@ -310,7 +310,7 @@ int Contrats(int pointsItem[nombreTotalPion], int coups) {
 
     for (int i = 0; i < nombreTotalPion; i++) {// Vérifie si les objectifs du contrat  sont atteints
         if (pointsItem[i] < contrats[niveau].objectifsContrat[i]) {
-            return 0; // Contrat non atteint
+            return 0; // pas atteint
         }
     }
     return coups <= contrats[niveau].coupsMax; // Vérifie si le nombre de coups est respecté

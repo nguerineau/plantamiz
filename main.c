@@ -55,28 +55,28 @@ int main(void)
         }
 
         // Logique de validation de la sélection
-        if (deplacement == ' \r') { //  valide item à déplacé avec la barre d'espace
+        if (deplacement == ' ') { //  valide item à déplacé avec la barre d'espace
             Groupement(grid, &points, pointItem);
             GroupementRectangle(grid, &points, pointItem);
             TomberItems(grid);
             if (Contrats(pointItem, coups)) {
                 printf("BRAVO CHAMPION, vous avez rempli le contrat pour ce niveau.\n");
                 niveau++; // Passe au niveau suivant
-                points = 0; // Réinitialise les points
-                initializeGrid(grid); // Réinitialise la grille
+                points = 0; // Réinitialisation des points
+                initializeGrid(grid); // Réinitialisation de la grille
                 if (niveau >= sizeof(contrats) / sizeof(ContratPlateau)) {
                     printf("Vous avez terminé tous les niveaux !\n");
-                    break; // Fin du jeu
+                    break;
                 }
             } else {
-                printf(" Désolé , vous n'avez pas rempli le contrat. Fin du jeu.\n");
-                break; // Fin du jeu
+                printf(" Désolé , vous n'avez pas rempli le contrat. Jeu finis.\n");
+                break;
             }
         }
 
         if (vies <= 0) {
-            printf(" NON , Vous avez perdu toutes vos vies. Fin du jeu.\n");
-            break; // Fin du jeu
+            printf(" NON , Vous avez perdu toutes vos vies. Jeu finis.\n");
+            break;
         }
     }
     return 0;
