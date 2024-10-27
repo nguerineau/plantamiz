@@ -9,16 +9,14 @@
 
 int main(void)
 {
-    /**
-     int plateau[ligne][colonne];
-    init_plateau(plateau);
-    display_plateau(plateau);
-    while(1);
-    **/
+
     int points = 0; // stocker le point total
     int pointItem[5] = {0}; // Pour stocker les points pour chaque item
     int curseurX = 0, curseurY = 0,vies = 5;
     Selection selectionner[2] = { { -1, -1 }, { -1, -1 } };
+
+    startmenu:
+
     int opt_menu = Menu();
 
 
@@ -83,8 +81,7 @@ int main(void)
 
         case 3://regle du jeu
             affichage_regle_du_jeu();
-
-        break;
+            goto startmenu;
 
     }
 

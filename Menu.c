@@ -52,8 +52,12 @@ int Menu() {
 
 void affichage_regle_du_jeu() {
     printf("-----------------regle du jeu-----------------\n");
-    printf(" les regles ... vazs falloir les ajouter.\n");
+    printf("les regles ... vazs falloir les ajouter.\n");
 
+
+
+
+    printf("\n\n");
     printf("Appuyez sur 'p' pour quitter.\n");
 
     while (1) {
