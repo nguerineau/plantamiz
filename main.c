@@ -36,7 +36,7 @@ int main(void)
             system("cls");
             displayGrid(grid);
             Score(points, pointItem, vies);
-            printf("Utilisez Z-Q-S-D ou par les fleches pour déplacer le curseur, espace pour sélectionner item à déplacer.\n");
+            printf("Utilisez Z-Q-S-D ou par les fleches pour deplacer le curseur, espace pour selectionner item a deplacer.\n");
 
             char deplacement = _getch(); // Récupère la touche pressée
             if (deplacement == ' ') { // Sélection un item si la touche est une barre espace
@@ -81,10 +81,7 @@ int main(void)
         case 2:
         break;
 
-        case 3:
-        break;
-
-        case 4://regle du jeu
+        case 3://regle du jeu
             affichage_regle_du_jeu();
 
         break;
