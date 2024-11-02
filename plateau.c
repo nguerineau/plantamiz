@@ -53,6 +53,8 @@ ContratPlateau contrats[] = {
     {{55, 30, 35, 45, 0}, 40}, // Contrat pour le plateau niveau 2
     {{70, 0, 60, 0, 50}, 50} }; // Contrat pour le plateau niveau 3
 
+int nombreContrat=sizeof(contrats)/sizeof(ContratPlateau);
+
 void gotolicol(int x, int y)//permetttant de positionner le curseur dans la console
 {
     COORD coord;
@@ -73,7 +75,7 @@ void color(int couleurDuTexte, int couleurDeFond) {
 
 // Fonction pour générer un item aléatoire
 char generateRandomItem() {
-    return items[rand() % 5];
+    return items[rand() % nombreTotalPion];
 }
 
 // Vérifie si un groupe de 3 est formé horizontalement ou verticalement
@@ -123,11 +125,7 @@ void displayGrid(char grid[ROWS][COLS]) {
     color(15, 0); // Remettre le texte en blanc
 }
 
-void Instruction() {
-    gotolicol(0, ROWS + 4); // Positionne l'affichage un peu plus bas
-    printf("Entrez votre deplacement: fleche haut a ou z | fleche bas ou s | fleche gauche ou q | fleche droit ou d et validez avec la barre d'espace : ");
 
-}
 void Score(int points, int pointsItem[nombreTotalPion], int vie) {
          gotolicol(0, ROWS + 1);
           int S=pointsItem[soleil];// point pour item soleil
@@ -136,7 +134,11 @@ void Score(int points, int pointsItem[nombreTotalPion], int vie) {
           int O=pointsItem[oignons];// point pour item oignon
           int M=pointsItem[mandarine]; // point pour item mandarine
     printf("Points Totals: %d\n", points);
-    printf("Soleil: %d\n Fraise: %d\n Pomme: %d\n Oignon: %d\n Mandarine:%d\n",S, F, P, O, M);
+    printf("Soleil: %d\n",S);
+    printf("Fraise: %d\n",F);
+    printf("Pomme: %d\n",P);
+    printf("Oignons: %d\n",O);
+    printf("Mandarine: %d\n",M);
     printf("Vies restantes: %d\n", vie);
 }
 
@@ -201,7 +203,7 @@ void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalP
                 while (ligne + compteurPoint < ROWS && grid[ligne][colonne] == grid[ligne + compteurPoint][colonne]) {
                     compteurPoint++;
                     }
-                if (compteurPoint > 3) {
+                if (compteurPoint >= 3) {
                     *points += compteurPoint; // on compte 1 point par item
                     pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
                     for (int k = 0; k < compteurPoint; k++) {
@@ -223,30 +225,31 @@ void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalP
     }
 }
 
-void TomberItems(char grid[ROWS][COLS]) {// fonction permettant de remplir  les espaces vides du aux items regroupé par d'autres items aléatoire
+void TomberItems(char grid[ROWS][COLS]) {
+    // Faire tomber les items pour combler les vides
     for (int colonne = 0; colonne < COLS; colonne++) {
-    for (int ligne = ROWS - 1; ligne >= 0; ligne--) {// parcours en commençant par la derniere ligne du plataux et monte vers le haut ( vers la première ligne)
-        if (grid[ligne][colonne] == ' ') {// si espace vide
-        for (int k = ligne - 1; k >= 0; k--) {// parcours LE DESSUS de l'espace vide pour trouver un items présent
-            if (grid[k][colonne] != ' ') {// si il n'y a pas espace vide
-                grid[ligne][colonne] = grid[k][colonne];
-                grid[k][colonne] = ' ';// déplacer cet item present dans espace vide
-        break;// seul le PREMIER item détécté est déplacé
+        for (int ligne = ROWS - 1; ligne >= 0; ligne--) {
+            if (grid[ligne][colonne] == ' ') { // si espace vide
+                for (int k = ligne - 1; k >= 0; k--) { // trouver un item au-dessus
+                    if (grid[k][colonne] != ' ') { // item trouvé
+                        grid[ligne][colonne] = grid[k][colonne];
+                        grid[k][colonne] = ' '; // déplacer cet item
+                        break;
+                    }
+                }
             }
         }
     }
-}
-}
-    //parcourir les lignes et colonnes du plateaux
-    for (int colonne = 0; colonne < COLS; colonne++) {
-    for (int ligne = 0; ligne < ROWS; ligne++) {
-        if (grid[ligne][colonne] == ' ') {// si il ya un espace vide
-            grid[ligne][colonne] = generateRandomItem();// remplir ces espaces vides par des items aléatoire
-            }
-        }
-    }
-}
 
+    // Remplir les espaces vides par des items aléatoires
+    for (int colonne = 0; colonne < COLS; colonne++) {
+        for (int ligne = 0; ligne < ROWS; ligne++) {
+            if (grid[ligne][colonne] == ' ') { // si espace vide
+                grid[ligne][colonne] = generateRandomItem(); // remplir par un item aléatoire
+            }
+        }
+    }
+}
 // Fonction pour faire des groupement de rectangle
 void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
     int largeur = 0;

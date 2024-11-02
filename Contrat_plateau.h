@@ -12,4 +12,5 @@ typedef struct {
 } ContratPlateau;
 
 
+
 #endif //CONTRAT_PLATEAU_H

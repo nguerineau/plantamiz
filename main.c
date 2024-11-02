@@ -1,17 +1,15 @@
 #include <stdio.h>
 #include "plateau.h"
-#include "Selection_cordonnées.h"
 #include "Contrat_plateau.h"
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
 #include "Menu.h"
-#include "pion.h"
 #include <conio.h>
 
 int main(void)
 {
-    /**
+     /**
      int plateau[ligne][colonne];
     init_plateau(plateau);
     display_plateau(plateau);
@@ -20,11 +18,6 @@ int main(void)
     int points = 0; // stocker le point total
     int pointItem[nombreTotalPion] = {0}; // Pour stocker les points pour chaque item
     int curseurX = 0, curseurY = 0,vies = 5, coups=0;
-    int niveau=0;
-    ContratPlateau contrats[] = {
-        {{20, 0, 0, 50, 20}, 30}, // Contrat pour le plateau niveau 1
-        {{55, 30, 35, 45, 0}, 40}, // Contrat pour le plateau niveau 2
-        {{70, 0, 60, 0, 50}, 50} }; // Contrat pour le plateau niveau 3
 
     //Selection selectionner[2] = { { -1, -1 }, { -1, -1 } };
     Menu();
@@ -40,13 +33,14 @@ int main(void)
         displayGrid(grid);
         AffichageCurseur(curseurX, curseurY);
         Score(points, pointItem, vies);
-        Instruction();
+        printf("Entrez votre deplacement: fleche haut ou z | fleche bas ou s | fleche gauche ou q | fleche droit ou d et validez avec la barre d'espace : ");
+
 
         char deplacement = _getch(); // Lire le déplacement de l'utilisateur
 
         Deplacement(deplacement, &curseurX, &curseurY);
         coups++;
-        gotolicol(0, ROWS + 3);// s'assurer de mettre affichage en dessous ce la grille
+       // gotolicol(0, ROWS + 7);// s'assurer de mettre affichage en dessous ce la grille
         printf("Coups restants: %d\n", OBJECTIF_CONTRAT_ATTEINT - coups); // Affiche le nombre de coups restants
 
         if (coups >= OBJECTIF_CONTRAT_ATTEINT) {
@@ -54,30 +48,42 @@ int main(void)
             break; // Fin du jeu
         }
 
-        // Logique de validation de la sélection
-        if (deplacement == ' ') { //  valide item à déplacé avec la barre d'espace
-            Groupement(grid, &points, pointItem);
-            GroupementRectangle(grid, &points, pointItem);
-            TomberItems(grid);
-            if (Contrats(pointItem, coups)) {
-                printf("BRAVO CHAMPION, vous avez rempli le contrat pour ce niveau.\n");
-                niveau++; // Passe au niveau suivant
-                points = 0; // Réinitialisation des points
-                initializeGrid(grid); // Réinitialisation de la grille
-                if (niveau >= sizeof(contrats) / sizeof(ContratPlateau)) {
-                    printf("Vous avez terminé tous les niveaux !\n");
-                    break;
-                }
-            } else {
-                printf(" Désolé , vous n'avez pas rempli le contrat. Jeu finis.\n");
+
+      if (deplacement == ' ') {// valider item avec espace
+    if (curseurX < COLS - 1) { // S'assurer que l'échange est possible vers la droite
+        // Échanger deux items
+        char echange = grid[curseurY][curseurX];
+        grid[curseurY][curseurX] = grid[curseurY][curseurX + 1];
+        grid[curseurY][curseurX + 1]= echange;
+
+        Groupement(grid, &points, pointItem);
+        GroupementRectangle(grid, &points, pointItem);
+        Score(points, pointItem, vies);
+        TomberItems(grid);
+
+        if (Contrats(pointItem, coups)) {
+            printf("BRAVO CHAMPION, vous avez rempli le contrat pour ce niveau.\n");
+            niveau++;
+            points = 0; // Réinitialisation des points
+            initializeGrid(grid);
+            if (niveau >= nombreContrat) {
+                printf("Vous avez terminé tous les niveaux !\n");
                 break;
             }
-        }
-
-        if (vies <= 0) {
-            printf(" NON , Vous avez perdu toutes vos vies. Jeu finis.\n");
+        } else if (coups >= OBJECTIF_CONTRAT_ATTEINT) {
+            printf("Désolé, vous n'avez pas rempli le contrat. Jeu finis.\n");
             break;
         }
+    }
+}
+    if (coups >= OBJECTIF_CONTRAT_ATTEINT && !Contrats(pointItem, coups)) {
+    vies--;
+    printf("Vous avez perdu une vie, Vies restantes : %d\n", vies);
+    if (vies <= 0) {
+        printf("Vous avez perdu toutes vos vies. Fin du jeu.\n");
+        break;
+    }
+}
     }
     return 0;
 }

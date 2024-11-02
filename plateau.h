@@ -15,6 +15,7 @@ void display_plateau();
 
 #define ROWS 25
 #define COLS 45
+#define nombreTotalPion 5
 #include "pion.h"
 #include "Contrat_plateau.h"
 #define OBJECTIF_CONTRAT_ATTEINT 50
@@ -25,7 +26,6 @@ void display_plateau();
 void color(int couleurDuTexte, int couleurDeFond);
 char generateRandomItem();
 int checkGroup(char grid[ROWS][COLS], int row, int col, char item);
-void Instruction();
 void gotolicol(int x, int y);
 void GroupementRectangle(char grid[ROWS][COLS], int *points, int pointsItem[5]);
 void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[5]);
@@ -37,5 +37,9 @@ void Deplacement(char deplacement, int *curseurX, int *curseurY);
 void Score(int points, int pointsItem[5], int vie);
 void initializeGrid(char grid[ROWS][COLS]);
 void displayGrid(char grid[ROWS][COLS]);
+
+extern ContratPlateau contrats[];
+extern int nombreContrat;
+extern int niveau;
 
 #endif //PLATEAU_H
