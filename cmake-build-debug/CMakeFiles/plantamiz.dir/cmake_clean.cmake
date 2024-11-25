@@ -1,11 +1,15 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/plantamiz.dir/Menu.c.o"
-  "CMakeFiles/plantamiz.dir/Menu.c.o.d"
-  "CMakeFiles/plantamiz.dir/main.c.o"
-  "CMakeFiles/plantamiz.dir/main.c.o.d"
-  "CMakeFiles/plantamiz.dir/plateau.c.o"
-  "CMakeFiles/plantamiz.dir/plateau.c.o.d"
-  "plantamiz"
+  "CMakeFiles/plantamiz.dir/Menu.c.obj"
+  "CMakeFiles/plantamiz.dir/Menu.c.obj.d"
+  "CMakeFiles/plantamiz.dir/main.c.obj"
+  "CMakeFiles/plantamiz.dir/main.c.obj.d"
+  "CMakeFiles/plantamiz.dir/pion.c.obj"
+  "CMakeFiles/plantamiz.dir/pion.c.obj.d"
+  "CMakeFiles/plantamiz.dir/plateau.c.obj"
+  "CMakeFiles/plantamiz.dir/plateau.c.obj.d"
+  "libplantamiz.dll.a"
+  "plantamiz.exe"
+  "plantamiz.exe.manifest"
   "plantamiz.pdb"
 )
 

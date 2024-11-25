@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Contrat_plateau.h"
-#include "Selection_cordonnées.h"
+#include "pion.h"
 #include <windows.h> // Pour la gestion des couleurs
 
 /***
