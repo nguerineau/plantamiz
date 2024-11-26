@@ -6,9 +6,10 @@
 #include <windows.h>
 #include "Menu.h"
 #include <conio.h>
+#include "sauvegarde.h"
 
 int main(void)
-{    char nom[];
+{   char nom[];
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
     int points = 0;
@@ -18,7 +19,7 @@ int main(void)
     Menu();
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
-    sauvegarde();
+    sauvegarde(nom);
 
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;

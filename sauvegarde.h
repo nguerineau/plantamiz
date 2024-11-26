@@ -4,6 +4,6 @@
 
 #ifndef SAUVEGARDE_H
 #define SAUVEGARDE_H
-void sauvegarde();
+void sauvegarde(char nom[]);
 
 #endif //SAUVEGARDE_H
