@@ -6,7 +6,6 @@
 void sauvegarde(char nom[]) // rajouter paramètres int progressions
 {
     char str[10]="../"; // nom du fichier pour aller dans route ici
-    char nom[]; // nom saisie par l'utilisateur
     strcat(str,nom); // concat 2 char précédent
     strcat(str,".txt"); // concat en ajt txt
 
@@ -17,14 +16,12 @@ void sauvegarde(char nom[]) // rajouter paramètres int progressions
     fprintf(pf, "Le nom de l'utilisateur est %s", nom);
     fclose(pf);
     pf=NULL;
-
 }
 
 
 
-    fclose(pf);
-    pf = NULL;
 
-}
+
+
 // Created by ayyub on 25/11/2024.
 //

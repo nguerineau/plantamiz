@@ -9,16 +9,15 @@
 #include "sauvegarde.h"
 
 int main(void)
-{   char nom[];
+{   char nom[10];
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
+    printf("\n\n\n");
     int points = 0;
     int pointsItem[nombreTotalPion] = {0};
     int vies = 5, coups = 0;
 
-    Menu();
-    printf("\n Saisir votre nom : \n");
-    scanf("%s",&nom);
+    Menu(nom);
     sauvegarde(nom);
 
     char grid[ROWS][COLS];
