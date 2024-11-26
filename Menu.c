@@ -6,12 +6,12 @@
 int Menu(char nom[]) {
     int choix;
     printf("\t bienvenue joueur : ");
-    printf("%s\n",nom);
+    printf("\t%s\n",nom);
     printf("\t-----------------MENU-----------------\n");
     printf("\t1 - Nouvelle partie\n");
     printf("\t2 - Charger une partie\n");
     printf("\t3 - Regles du jeu\n\n");
-    printf("Saisir votre choix ?\n");
+    printf("\tSaisir votre choix ?\n");
     //scanf("%d", &choix);
     while (1) {
         // Boucle infinie
