@@ -90,6 +90,8 @@ int main(void)
     int pointItem[nombreTotalPion] = {0}; // Pour stocker les points pour chaque item
     int curseurX = 0, curseurY = 0,vies = 5, coups=0;
 
+    startmenu:
+
     //Selection selectionner[2] = { { -1, -1 }, { -1, -1 } };
     Menu();
     char grid[ROWS][COLS];
@@ -154,7 +156,10 @@ int main(void)
         printf("Vous avez perdu toutes vos vies. Fin du jeu.\n");
         break;
     }
+
+
 }
+        goto startmenu;
     }
     return 0;
 }*/
