@@ -15,4 +15,6 @@ add_executable(plantamiz main.c
         Selection_cordonnées.h
         Selection_cordonnées.h
         Contrat_plateau.h
+        sauvegarde.c
+        sauvegarde.h
 )
