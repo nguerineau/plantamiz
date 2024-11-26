@@ -9,7 +9,7 @@
 #include "sauvegarde.h"
 
 int main(void)
-{   char nom[10];
+{   char nom[50];
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
     printf("\n\n\n");
