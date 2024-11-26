@@ -18,6 +18,7 @@ int main(void)
     Menu();
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
+    sauvegarde();
 
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;
