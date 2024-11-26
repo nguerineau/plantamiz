@@ -8,14 +8,85 @@
 #include <conio.h>
 
 int main(void)
-{
+{    char nom[];
+    printf("\n Saisir votre nom : \n");
+    scanf("%s",&nom);
+    int points = 0;
+    int pointsItem[nombreTotalPion] = {0};
+    int vies = 5, coups = 0;
+
+    Menu();
+    printf("\n Saisir votre nom : \n");
+    scanf("%s",&nom);
+
+    char grid[ROWS][COLS];
+    int curseurX = 0, curseurY = 0;
+
+    srand(time(NULL));
+    initializeGrid(grid);
+
+    while (1) {
+        displayGrid(grid);
+        AffichageCurseur(curseurX, curseurY);
+        Score(points, pointsItem, vies);
+        printf("Entrez votre deplacement (z/q/s/d ou espace pour valider) : ");
+        char deplacement = _getch();
+
+      Deplacement(deplacement, &curseurX, &curseurY);
+    if (deplacement == ' ') { // Valider échange avec espace
+
+
+    // Vérifier la validité de l'échange (dans les limites de la grille)
+    if (curseurX + 1 < COLS) {
+        // Échanger les items
+       char echange = grid[curseurY][curseurX];
+        grid[curseurY][curseurX] = grid[curseurY][curseurX + 1];
+        grid[curseurY][curseurX + 1] = echange;
+
+        // Vérifier si un groupement est formé après l'échange
+        int pointsAvant = points;
+        Groupement(grid, &points, pointsItem);
+        GroupementRectangle(grid, &points, pointsItem);
+
+        // Si aucun point n'est marqué, annuler l'échange
+        if (points == pointsAvant) {
+            // Ré-inverser l'échange
+            echange = grid[curseurY][curseurX];
+            grid[curseurY][curseurX] = grid[curseurY][curseurX + 1];
+            grid[curseurY][curseurX + 1] = echange;
+        } else {
+            // Si des points sont marqués, faire tomber les items et remplir les espaces
+            TomberItems(grid);
+
+            // Vérifier les objectifs du contrat pour le niveau
+            if (Contrats(pointsItem, coups)) {
+                printf(" vous avez rempli le contrat pour ce niveau.\n");
+                niveau++;
+                points = 0; // Réinitialiser les points pour le prochain niveau
+                initializeGrid(grid);
+
+                if (niveau >= nombreContrat) {
+                    printf("Vous avez terminé tous les niveau \n");
+                    break;
+                }
+            }
+        }
+    } else {
+        printf("Échange non valide, essayez une direction différente.\n");
+    }
+}
+    }
+
+    return 0;
+}
+
      /**
      int plateau[ligne][colonne];
     init_plateau(plateau);
     display_plateau(plateau);
     while(1);
     **/
-    int points = 0; // stocker le point total
+    /*int points = 0; // stocker le point total
     int pointItem[nombreTotalPion] = {0}; // Pour stocker les points pour chaque item
     int curseurX = 0, curseurY = 0,vies = 5, coups=0;
 
@@ -86,4 +157,4 @@ int main(void)
 }
     }
     return 0;
-}
+}*/
