@@ -9,41 +9,7 @@
 #include "pion.h"
 #include <windows.h> // Pour la gestion des couleurs
 
-/***
-struct plateau { // revoir l'utilité de cettet element
-    unsigned int longueur; //longeur plateau
-    unsigned int hauteur ; //hauteur plateau
-    char *nom; // nom du plateau
-    int objectif_soleil; // quantité de soleil demandé pour le contract
-    int objectif_fraise; // quantité de fraise demandé pour le contract
-    int objectif_pomme; // quantité de pomme demandé pour le contract
-    int objectif_oignon; // quantité de oignon demandé pour le contract
-    int objectif_mandarine; // quantité de mandarine demandé pour le contract
-};
 
-
-void init_plateau(int tableau[ligne][colonne]) {
-    int i, j;
-    for (i = 0; i < ligne; i++) {
-        for (j = 0; j < colonne; j++) {
-            tableau[i][j] = 0;
-        }
-    }
-
-}
-
-void display_plateau(int tableau[ligne][colonne]) {
-    int i,j;
-    printf("                                        PLANTAMIZ \n");
-    for(i=0; i<ligne;i++){
-        for(j=0; j<colonne; j++){
-            printf("%2d",tableau[i][j]);
-        }
-        printf("\n");
-    }
-
-}
-***/
 
 // Liste des items
 char items[] = {'S', 'F', 'P', 'O', 'M'};
@@ -64,7 +30,7 @@ void gotolicol(int x, int y)//permetttant de positionner le curseur dans la cons
 }
 void AffichageCurseur(int curseurX, int curseurY) {
     gotolicol(curseurX * 2, curseurY + 1); // Ajuste pour l'espacement
-    printf("^"); //  symbole pour le curseur
+    printf("-"); //  symbole pour le curseur
 }
 
 // Fonction pour changer la couleur dans la console
@@ -126,20 +92,12 @@ void displayGrid(char grid[ROWS][COLS]) {
 }
 
 
-void Score(int points, int pointsItem[nombreTotalPion], int vie) {
-         gotolicol(0, ROWS + 1);
-          int S=pointsItem[soleil];// point pour item soleil
-          int F=pointsItem[fraise];// point pour item fraise
-          int P=pointsItem[pomme];// point pour item pomme
-          int O=pointsItem[oignons];// point pour item oignon
-          int M=pointsItem[mandarine]; // point pour item mandarine
+void Score(int points, int pointsItem[nombreTotalPion], int vie, int coups) {
+    gotolicol(0, ROWS + 1);
     printf("Points Totals: %d\n", points);
-    printf("Soleil: %d\n",S);
-    printf("Fraise: %d\n",F);
-    printf("Pomme: %d\n",P);
-    printf("Oignons: %d\n",O);
-    printf("Mandarine: %d\n",M);
-    printf("Vies restantes: %d\n", vie);
+    printf("Soleil: %d | Fraise: %d | Pomme: %d | Oignons: %d | Mandarine: %d\n",
+           pointsItem[soleil], pointsItem[fraise], pointsItem[pomme], pointsItem[oignons], pointsItem[mandarine]);
+    printf("Vies restantes: %d | Coups restants: %d\n", vie, OBJECTIF_CONTRAT_ATTEINT - coups);
 }
 
 void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacement un item
@@ -172,54 +130,63 @@ void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacemen
     }
 }
 
-void Groupement (char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
-    int ItemCompter[ROWS][COLS] = {0}; // éviter de recompter les points ( items déjà compté)
+void GroupementVerticalHorizontal(char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
+    // initilse une matrice ( tableau à deux dimension) pour marquer les éléments déjà compter dans un groupement
+    int ItemCompter[ROWS][COLS] = {0};  // vhaque case sera 1 si l'élément est compter, 0 si c pas le cas
 
-    // Vérification des groupement items à horizontal
-    for (int ligne = 0; ligne < ROWS; ligne++) {
-    for (int colonne = 0; colonne < COLS - 2; colonne++) {// compter jusqu'a deux colonnes avant la fin ( nécesitant mininum ça pour faire  un groupement de 3)
-        if (grid[ligne][colonne] == grid[ligne][colonne + 1] && grid[ligne][colonne] == grid[ligne][colonne + 2]) {//vérifie si les 3 items proche sont identiques
-            int compteurPoint = 3;// compter trois points
-            while (colonne + compteurPoint < COLS && grid[ligne][colonne] == grid[ligne][colonne + compteurPoint]) {
-                compteurPoint++; // continuer de compter tant que les items proche sont identiques
+    // vérifie des groupements horizontal
+    for (int i = 0; i < ROWS; i++) {  // parcours chaque ligne de la grille
+        for (int j = 0; j < COLS - 2; j++) {  // parcours chaque colonne, mais jusqu'à COLS - 2 pour éviter de dépasser la grille
+            if (grid[i][j] == grid[i][j+1] && grid[i][j] == grid[i][j+2]) {// Vérifier si 3 éléments consécutifs sont identiques horizontalement
+                int compteur = 3;  // compter d'abord les 3 éléments consécutifs
+                // continuer à compté tant qu'on trouve des éléments identiques à droite
+                while (j + compteur < COLS && grid[i][j] == grid[i][j+compteur]) {
+                    compteur++;  // incrémente le compteur si l'élément suivant est identique
                 }
-            if (compteurPoint >= 4) {
-                *points ++= compteurPoint; // 1 point par item
-                 pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
-                for (int k = 0; k < compteurPoint; k++) {
-                    ItemCompter[ligne][colonne + k] = 1;
-                    }
+                // ajouter des points pour ce groupement
+                *points += compteur;  // On ajoute au total des points le nombre d'éléments du groupement
+                // ajouter des points à l'élément spécifique dans le tableau pointsItem
+                pointsItem[grid[i][j] - 'S'] += compteur;  // Le '- 'S' permet de convertir le caractère en indice du tableau
+                // marquer des cases de ce groupement pour ne pas les compter à nouveau
+                for (int k = 0; k < compteur; k++) {
+                    ItemCompter[i][j+k] = 1;  // marque les cases comptabilisées dans la ligne
                 }
-                colonne += compteurPoint - 1; // Sauter les items déjà comptés
+                // saute les cases déjà compter dans le prochain tour de boucle
+                j += compteur - 1;
             }
         }
     }
 
-    // Vérification des groupement items à la vertical
-    for (int colonne = 0; colonne < COLS; colonne++) {
-        for (int ligne = 0; ligne < ROWS - 2; ligne++) {// compter jusqu'a deux lignes avant la fin ( nécesitant mininum ça pour faire les groupements de 3)
-            if (grid[ligne][colonne] == grid[ligne + 1][colonne] && grid[ligne][colonne] == grid[ligne + 2][colonne]) {//vérifie si les 3 items sont identiques
-                int compteurPoint=3;
-                while (ligne + compteurPoint < ROWS && grid[ligne][colonne] == grid[ligne + compteurPoint][colonne]) {
-                    compteurPoint++;
-                    }
-                if (compteurPoint >= 3) {
-                    *points += compteurPoint; // on compte 1 point par item
-                    pointsItem[grid[ligne][colonne] - 'S'] += compteurPoint; // Mise à jour des points par item
-                    for (int k = 0; k < compteurPoint; k++) {
-                        ItemCompter[ligne + k][colonne] = 1;
-                    }
+    // vérifier des groupements vertical
+    for (int j = 0; j < COLS; j++) {  // parcours chaque colonne
+        for (int i = 0; i < ROWS - 2; i++) {  // parcours chaque ligne, mais jusqu'à ROWS - 2 pour éviter de dépasser la grille
+            if (grid[i][j] == grid[i+1][j] && grid[i][j] == grid[i+2][j]) {// vérifie si 3 éléments consécutifs sont identiques verticalement
+                int compteur = 3;  // commencer par compter les 3 éléments consécutifs
+                //continuer à compter tant qu'on trouve des éléments identiques en bas de celui-ci
+                while (i + compteur < ROWS && grid[i][j] == grid[i+compteur][j]) {
+                    compteur++;  // Incrémentation du compteur si l'élément suivant est identique
                 }
-                ligne += compteurPoint - 1; // Sauter les items déjà comptés
+                // ajouter des points pour ce groupement
+                *points += compteur;  // Ajoute au total des points le nombre d'éléments du groupement
+                // ajouter des points à l'élément spécifique dans le tableau pointsItem
+                pointsItem[grid[i][j] - 'S'] += compteur;  // Le '- 'S' permet de convertir le caractère en indice du tableau
+                // Marque les cases de ce groupement pour ne pas les compter à nouveau
+                for (int k = 0; k < compteur; k++) {
+                    ItemCompter[i+k][j] = 1;  // marque les cases compté dans la colonne
+                }
+                // sauter les cases déjà compté dans le prochain tour de boucle
+                i += compteur - 1;
             }
         }
     }
 
-    // Suppression des items comptés
-    for (int ligne = 0; ligne < ROWS; ligne++) {
-        for (int colonne = 0; colonne < COLS; colonne++) {
-            if (ItemCompter[ligne][colonne]) {
-                grid[ligne][colonne] = ' '; // Suppression ou remplacer par des items aléatoire par dessus
+    // après avoir détecté et compté les groupements, on vide les cases déjà compté
+    // empêche les groupements précédents d'être compter encore
+    for (int i = 0; i < ROWS; i++) {  // Parcours chaque ligne
+        for (int j = 0; j < COLS; j++) {  // Parcours chaque colonne
+            // Si l'élément de la case a été comptabilisé (marqué dans ItemCompter), on le remplace par un espace
+            if (ItemCompter[i][j]) {
+                grid[i][j] = ' ';  // Remplace l'élément comptabilisé par un espace
             }
         }
     }
@@ -318,21 +285,42 @@ int Contrats(int pointsItem[nombreTotalPion], int coups) {
     }
     return coups <= contrats[niveau].coupsMax; // Vérifie si le nombre de coups est respecté
 }
-/*int finNiveau(int points, int *vie) {
-    if (points >= POINTS_NIVEAU_REQUIS) {
-        printf("BRAVO CHAMPION , Niveau suivant atteint\n");
+void GroupementH(char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]) {
 
-        // AYYUB ICI TU FAIS LA SAUVEGARDE
+    int ItemCompter[ROWS][COLS] = {0}; // tableau pour suivre les cases déjà compter
 
-        return 1;
-    } else {
-        printf("Vous avez pas atteint le score. vous avez eprdu une vie \n");
-        (*vie)-1; // Une vie perdu
-
-        if (*vie == 0) {
-            printf("Vous avez perdu toutes vos vies. Fin du jeu.\n");
-            return -1 ; // Fin du jeu
+    // parcourir de toutes les cases de la grille pour rechercher des H
+    for (int i = 1; i < ROWS - 1; i++) {  // on commence à la ligne 1 et on s'arrête à la ligne ROWS-2
+        for (int j = 1; j < COLS - 1; j++) {  // on commence à la colonne 1 et on s'arrête à la colonne COLS-2
+            // Vérification si l'élément en position i et ausssi j peut être le centre d'un H
+            if (grid[i][j] == grid[i-1][j] && grid[i][j] == grid[i+1][j] &&  // Vérifie les éléments vertical du H déssiné
+                grid[i][j] == grid[i][j-1] && grid[i][j] == grid[i][j+1]) {  // Vérifie les éléments horizontal du H déssiné
+                // Si un "H" est trouvé, on calcule le nombre d'items qui forment le "H"
+                int compteur = 5;  // Un H est constitué de 5 cases
+                *points += 2 * compteur;  // chaque H rapporte 2 * X points, avec X = 5 QUI est le nombre mininum necessaire pour former un H
+                pointsItem[grid[i][j] - 'S'] += 2 * compteur;  // On ajoute les points au type d'item concerné
+                // On marque les cases du "H" comme comptabilisées
+                ItemCompter[i][j] = 1;  //  centre du "H"
+                ItemCompter[i-1][j] = 1;  //  haut du "H"
+                ItemCompter[i+1][j] = 1;  //  bas du "H"
+                ItemCompter[i][j-1] = 1;  // le côté gauche du "H"
+                ItemCompter[i][j+1] = 1;  //  côté droit du "H"
+                }
         }
-        return 0; // échoué
     }
-}*/
+
+    // après avoir comptabilisé les points pour tous les H, on efface les items déjà compter
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (ItemCompter[i][j]) {
+                grid[i][j] = ' ';  // Remplace les items comptabilisés par un espace (c'est à dire qu'ils sont supprimé)
+            }
+        }
+    }
+}
+void ObjectifsItem (int objectifs[nombreTotalPion], int pointsItem[nombreTotalPion]) {
+    gotolicol(0, ROWS + 4);//évite que ça empiete sur les phrase au-dessus ou encore la grille
+    printf("Objectifs  :\n");
+    printf("Soleil: %d | Fraise: %d | Pomme: %d | Oignons: %d | Mandarine: %d\n",objectifs[soleil] - pointsItem[soleil],objectifs[fraise] - pointsItem[fraise],objectifs[pomme] - pointsItem[pomme],objectifs[oignons] - pointsItem[oignons],objectifs[mandarine] - pointsItem[mandarine]);
+    // objectif final = objective d'un d'item spécifique - point gagné cet item gagné durant la partie
+}
