@@ -54,7 +54,7 @@ void affichage_regle_du_jeu() {
         // Boucle infinie
         if (_kbhit()) { // Vérifie si une touche est pressée
             char c = _getch(); // Récupère la touche pressée
-            if (c == 'p') {
+            if (c == 'p') {// si la touche p à été appuyez
                 printf("\nSortie des regle du jeu.\n");
                 break; // Quitte la boucle
             }
