@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void sauvegarde(char nom[]) // rajouter paramètres int progressions
+void sauvegarde(char nom[], int niveau) // rajouter paramètres int progressions
 {
     char str[10]="../"; // nom du fichier pour aller dans route ici
     strcat(str,nom); // concat 2 char précédent
@@ -13,7 +13,7 @@ void sauvegarde(char nom[]) // rajouter paramètres int progressions
     if (pf == NULL) {
         printf("Erreur d'ouverture de fichier.");
     }
-    fprintf(pf, "Le nom de l'utilisateur est %s", nom);
+    fprintf(pf, "Le nom de l'utilisateur est %s et le niveau est %d " , nom,niveau);
     fclose(pf);
     pf=NULL;
 }
