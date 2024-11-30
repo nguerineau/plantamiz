@@ -93,6 +93,15 @@ int main(void)
         }
         break;
     }
+    case 2:
+
+        break;
+
+    case 3:
+        goto startmenu;
+        break;
+
+
 
     return 0;
 }
