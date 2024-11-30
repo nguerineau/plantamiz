@@ -72,6 +72,7 @@ int main(void)
                     if (Contrats(pointsItem, coups)) {
                         printf(" vous avez rempli le contrat pour le niveau %d.\n", niveau+1);
                         niveau++;// prochain niveau
+                        sauvegarde(nom);
                         initializeGrid(grid);// réinitialiser la grille
                         points = 0; // Réinitialiser les points pour le prochain niveau
                         coups = 0; // Réinitialise le nombre de coups
