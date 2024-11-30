@@ -21,7 +21,7 @@ int main(void)
     startmenu:
 
     int opt_menu = Menu(nom);
-    sauvegarde(nom);
+    sauvegarde(nom,niveau);
 
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;
@@ -72,7 +72,7 @@ int main(void)
                     if (Contrats(pointsItem, coups)) {
                         printf(" vous avez rempli le contrat pour le niveau %d.\n", niveau+1);
                         niveau++;// prochain niveau
-                        sauvegarde(nom);
+                        sauvegarde(nom,niveau);
                         initializeGrid(grid);// réinitialiser la grille
                         points = 0; // Réinitialiser les points pour le prochain niveau
                         coups = 0; // Réinitialise le nombre de coups
@@ -91,7 +91,7 @@ int main(void)
             }
         if (vies == 0){
             printf("Vous etez nul. Réessayez ?\n");
-            sauvegarde(nom);
+            sauvegarde(nom,niveau);
             goto startmenu;
         }
         break;
