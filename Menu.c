@@ -28,6 +28,7 @@ int Menu(char nom[]) {
                 return 2;
                 case 51://règle du jeu 3 ascii
                     printf("Voici les regles du jeu \n");
+                affichage_regle_du_jeu();
                 return 3;
                 default:
                     printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
@@ -42,17 +43,16 @@ int Menu(char nom[]) {
 
 void affichage_regle_du_jeu() {
     printf("-----------------regle du jeu-----------------\n");
-    printf(" les regles ... vas falloir les ajouter.\n");
-
-
-
-
+    printf(" Un groupe de 4 items (horizontal ou vertical) de même nature rapporte 4 points .\n");
+    printf(" un groupe de 6 items (horizontal ou vertical) de même nature provoque la disparition de tous les items identiques présents sur le tableau, même s'ils sont isolés, et remporte autant de points que d'items disparus.\n");
+    printf(" un groupe d’items de même nature en forme de H rapporte 2*X points avec X le nombre d'items formant le H.\n");
+    printf("un groupe d’items de même nature formant un rectangle rapport  2*(L x l) points avec L = longeur et l = largeur du rectangle. \n");
     printf("\n\n");
     printf("Appuyez sur 'p' pour quitter.\n");
 
     while (1) {
         // Boucle infinie
-        if (_kbhit()) { // Vérifie si une touche est pressée
+        if (_kbhit()) { // Vérifie si une touche est pressée alternative scanf pour une touche saisie
             char c = _getch(); // Récupère la touche pressée
             if (c == 'p') {// si la touche p à été appuyez
                 printf("\nSortie des regle du jeu.\n");
