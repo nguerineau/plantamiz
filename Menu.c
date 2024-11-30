@@ -42,11 +42,12 @@ int Menu(char nom[]) {
 
 
 void affichage_regle_du_jeu() {
-    printf("-----------------regle du jeu-----------------\n");
-    printf(" Un groupe de 4 items (horizontal ou vertical) de même nature rapporte 4 points .\n");
-    printf(" un groupe de 6 items (horizontal ou vertical) de même nature provoque la disparition de tous les items identiques présents sur le tableau, même s'ils sont isolés, et remporte autant de points que d'items disparus.\n");
-    printf(" un groupe d’items de même nature en forme de H rapporte 2*X points avec X le nombre d'items formant le H.\n");
-    printf("un groupe d’items de même nature formant un rectangle rapport  2*(L x l) points avec L = longeur et l = largeur du rectangle. \n");
+    printf("-----------------regle du jeu-----------------\n\n");
+    printf(" Un groupe de 4 items (horizontal ou vertical) de même nature rapporte 4 points .\n\n");
+    printf(" un groupe de 6 items (horizontal ou vertical) de même nature provoque la disparition de tous les items identiques présents sur le tableau,\n");
+    printf("meme s'ils sont isoles, et remporte autant de points que d'items disparus.\n");
+    printf(" un groupe d’items de meme nature en forme de H rapporte 2*X points avec X le nombre d'items formant le H.\n\n");
+    printf(" un groupe d’items de meme nature formant un rectangle rapport  2*(L x l) points avec L = longeur et l = largeur du rectangle. \n\n");
     printf("\n\n");
     printf("Appuyez sur 'p' pour quitter.\n");
 
