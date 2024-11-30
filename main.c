@@ -33,20 +33,20 @@ int main(void) {
 
         case 1://nouvelle partie
             niveau=0;
-            goto game;
+
         break;
 
-    case 2:// charger la partie
-        niveau = charger(nom);
-        goto game;
-    break;
+        case 2:// charger la partie
+            niveau = charger(nom);
 
-    case 3:// affichage règle
-        goto startmenu;
-    break;
-}
+        break;
 
-    game:
+        case 3:// affichage règle
+            goto startmenu;
+        break;
+
+    }
+
     while (vies>0) {
 
                 system("cls");//nettoie la grille a chaque nouvelle positon du curseur
