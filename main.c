@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include <conio.h>
 #include "sauvegarde.h"
+#include "charger.h"
 
 int main(void)
 {   char nom[50];

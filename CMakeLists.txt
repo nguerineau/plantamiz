@@ -15,4 +15,6 @@ add_executable(plantamiz main.c
         Contrat_plateau.h
         main.c
         sauvegarde.c
+        Charger.c
+        Charger.h
 )

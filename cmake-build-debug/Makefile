@@ -128,6 +128,30 @@ plantamiz/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\plantamiz.dir\build.make CMakeFiles/plantamiz.dir/build
 .PHONY : plantamiz/fast
 
+Charger.obj: Charger.c.obj
+.PHONY : Charger.obj
+
+# target to build an object file
+Charger.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\plantamiz.dir\build.make CMakeFiles/plantamiz.dir/Charger.c.obj
+.PHONY : Charger.c.obj
+
+Charger.i: Charger.c.i
+.PHONY : Charger.i
+
+# target to preprocess a source file
+Charger.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\plantamiz.dir\build.make CMakeFiles/plantamiz.dir/Charger.c.i
+.PHONY : Charger.c.i
+
+Charger.s: Charger.c.s
+.PHONY : Charger.s
+
+# target to generate assembly for a file
+Charger.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\plantamiz.dir\build.make CMakeFiles/plantamiz.dir/Charger.c.s
+.PHONY : Charger.c.s
+
 Menu.obj: Menu.c.obj
 .PHONY : Menu.obj
 
@@ -257,6 +281,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... plantamiz
+	@echo ... Charger.obj
+	@echo ... Charger.i
+	@echo ... Charger.s
 	@echo ... Menu.obj
 	@echo ... Menu.i
 	@echo ... Menu.s
