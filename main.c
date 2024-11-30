@@ -29,7 +29,8 @@ int main(void)
     initializeGrid(grid);
 
     switch(opt_menu) {
-        case 1:
+
+        case 1://nouvelle partie
             while (vies>0) {
                 system("cls");//nettoie la grille a chaque nouvelle positon du curseur
                 displayGrid(grid);
@@ -93,11 +94,11 @@ int main(void)
         }
         break;
     }
-    case 2:
+    case 2:// charger la partie
 
         break;
 
-    case 3:
+    case 3:// affichage règle
         goto startmenu;
         break;
 
