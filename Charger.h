@@ -4,5 +4,5 @@
 
 #ifndef CHARGER_H
 #define CHARGER_H
-int charger(char nom);
+int charger(char nom[]);
 #endif //CHARGER_H

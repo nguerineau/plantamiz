@@ -1,1 +1,1 @@
-Le nom de l'utilisateur est nicolas
+Le nom de l'utilisateur est nicolas et le niveau est 0 
