@@ -9,8 +9,8 @@
 #include "sauvegarde.h"
 #include "charger.h"
 
-int main(void)
-{   char nom[50];
+int main(void) {
+    char nom[50];
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
     printf("\n\n\n");
@@ -32,7 +32,23 @@ int main(void)
     switch(opt_menu) {
 
         case 1://nouvelle partie
-            while (vies>0) {
+            niveau=0;
+            goto game;
+        break;
+
+    case 2:// charger la partie
+        niveau = charger(nom);
+        goto game;
+    break;
+
+    case 3:// affichage règle
+        goto startmenu;
+    break;
+}
+
+    game:
+    while (vies>0) {
+
                 system("cls");//nettoie la grille a chaque nouvelle positon du curseur
                 displayGrid(grid);
                 printf("Niveau actuel : %d\n", niveau + 1);
@@ -94,16 +110,6 @@ int main(void)
             sauvegarde(nom,niveau);
             goto startmenu;
         }
-        break;
-    }
-    case 2:// charger la partie
-
-        break;
-
-    case 3:// affichage règle
-        goto startmenu;
-        break;
-
 
 
     return 0;
