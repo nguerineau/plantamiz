@@ -12,6 +12,7 @@ int Menu(char nom[]) {
     printf("\t1 - Nouvelle partie\n");
     printf("\t2 - Charger une partie\n");
     printf("\t3 - Regles du jeu\n\n");
+    printf("\t4 - changement de nom\n\n");
     printf("\tSaisir votre choix ?\n");
     //scanf("%d", &choix);
     while (1) {
@@ -31,8 +32,11 @@ int Menu(char nom[]) {
                     printf("Voici les regles du jeu \n");
                 affichage_regle_du_jeu();
                 return 3;
+                case 52://changer de nom
+
+                return 3;
                 default:
-                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
 
                 break;
             }
@@ -43,6 +47,7 @@ int Menu(char nom[]) {
 
 
 void affichage_regle_du_jeu() {
+    system("cls");
     printf("-----------------regle du jeu-----------------\n\n");
     printf(" Un groupe de 4 items (horizontal ou vertical) de même nature rapporte 4 points .\n\n");
     printf(" un groupe de 6 items (horizontal ou vertical) de même nature provoque la disparition de tous les items identiques présents sur le tableau,\n");

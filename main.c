@@ -13,12 +13,16 @@ int main(void) {
     char nom[50];
     printf("\n Saisir votre nom : \n");
     scanf("%s",&nom);
-    printf("\n\n\n");
+    system("cls");
+
+    startmenu:
+
+
     int points = 0;
     int pointsItem[nombreTotalPion] = {0};
     int vies = 5, coups = 0;
 
-    startmenu:
+
 
     int opt_menu = Menu(nom);
 
@@ -41,6 +45,12 @@ int main(void) {
         break;
 
         case 3:// affichage règle
+            goto startmenu;
+        break;
+
+        case 4:// chager de nom
+            printf("\n Saisir votre nom : \n");
+            scanf("%s",&nom);
             goto startmenu;
         break;
 
@@ -91,6 +101,7 @@ int main(void) {
                         initializeGrid(grid);// réinitialiser la grille
                         points = 0; // Réinitialiser les points pour le prochain niveau
                         coups = 0; // Réinitialise le nombre de coups
+                        vies = 5;
                         if (niveau >= nombreContrat) {
                             printf("Vous avez terminé tous les niveau, BRAVO BRO \n");
                             break;
