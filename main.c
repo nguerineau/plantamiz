@@ -21,7 +21,6 @@ int main(void) {
     startmenu:
 
     int opt_menu = Menu(nom);
-    sauvegarde(nom,niveau);
 
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;
