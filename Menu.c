@@ -3,6 +3,7 @@
 //
 #include "Menu.h"
 #include "windows.h"
+#include "Charger.h"
 
 int Menu(char nom[]) {
     int choix;
@@ -27,6 +28,7 @@ int Menu(char nom[]) {
 
                 case 50://charger partie 2 ascii
                     printf("Vous chargez une partie !\n");
+                charger(nom);
                 return 2;
                 case 51://règle du jeu 3 ascii
                     printf("Voici les regles du jeu \n");
