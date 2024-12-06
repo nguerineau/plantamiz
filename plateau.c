@@ -73,7 +73,7 @@ void initializeGrid(char grid[ROWS][COLS]) {
 
 // Fonction pour afficher la grille avec couleurs
 void displayGrid(char grid[ROWS][COLS]) {
-   //system("cls");
+   system("cls");
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             // Attribution des couleurs en fonction des items
