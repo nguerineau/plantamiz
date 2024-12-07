@@ -15,7 +15,6 @@ int Menu() {
     printf("\t1 - Nouvelle partie\n");
     printf("\t2 - Charger une partie\n");
     printf("\t3 - Regles du jeu\n");
-    printf("\t4 - changement de nom\n\n");
     printf("\tSaisir votre choix ?\n");
     //scanf("%d", &choix);
     while (1) {
