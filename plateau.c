@@ -5,7 +5,6 @@
 #include "plateau.h"
 #include <stdlib.h>
 #include <time.h>
-#include "Contrat_plateau.h"
 #include "pion.h"
 #include <windows.h> // Pour la gestion des couleurs
 

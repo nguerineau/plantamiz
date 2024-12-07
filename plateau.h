@@ -6,7 +6,7 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#include "Contrat_plateau.h"
+
 
 #define ROWS 7
 #define COLS 7
