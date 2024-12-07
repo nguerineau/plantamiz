@@ -7,8 +7,7 @@
 #include "Menu.h"
 #include <conio.h>
 #include "sauvegarde.h"
-#include "charger.h"
-#include "game function.h"
+#include "Charger.h"
 
 int main(void) {
     const char *cheminFichier = "../utilisateurs.txt";
