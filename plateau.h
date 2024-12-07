@@ -17,7 +17,10 @@
 #define flecheGauche 75
 #define flecheBas 80
 
-
+typedef struct {
+    int objectifsContrat[nombreTotalPion]; // Objectifs pour chaque type de pion pour les trois niveaux
+    int coupsMax; // Coups maximum
+} ContratPlateau;
 
 
 

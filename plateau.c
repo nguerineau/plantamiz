@@ -85,7 +85,7 @@ void displayGrid(char grid[ROWS][COLS]) {
                 case 'M': color(5, 0); break;  // Violet pour Mandarine
                 default: color(15, 0); break;  // Blanc pour autres items
             }
-            printf("%c ", grid[i][j]);
+            printf("%c", grid[i][j]);
         }
         printf("\n");
     }
