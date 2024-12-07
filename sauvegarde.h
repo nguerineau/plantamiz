@@ -7,5 +7,5 @@
 
 
 void sauvegarde(const char *cheminFichier,int niveau,int score);
-
+void searchRequest(const char *cheminFichier);
 #endif // SAUVEGARDE_H
