@@ -27,7 +27,7 @@ enum pion {
 };
 
 
-void color(int couleurDuTexte, int couleurDeFond);
+
 char generateRandomItem();
 int checkGroup(char grid[ROWS][COLS], int row, int col, char item);
 void gotolicol(int x, int y);
