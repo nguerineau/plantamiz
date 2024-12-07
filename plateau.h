@@ -22,7 +22,9 @@ typedef struct {
     int coupsMax; // Coups maximum
 } ContratPlateau;
 
-
+enum pion {
+    soleil, fraise, pomme, oignons, mandarine
+};
 
 
 void color(int couleurDuTexte, int couleurDeFond);
@@ -44,7 +46,7 @@ void Score(int points, int pointsItem[nombreTotalPion], int vie, int coups);
 void ObjectifsItem (int objectifs[nombreTotalPion], int pointsItem[nombreTotalPion]);
 void initializeGrid(char grid[ROWS][COLS]);
 void displayGrid(char grid[ROWS][COLS]);
-
+int Aucun_Item_identique(char grid[ROWS][COLS],int ligne, int colonne, char item);
 extern ContratPlateau contrats[];
 extern int nombreContrat;
 extern int niveau;

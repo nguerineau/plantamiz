@@ -5,7 +5,6 @@
 #include "plateau.h"
 #include <stdlib.h>
 #include <time.h>
-#include "pion.h"
 #include <windows.h> // Pour la gestion des couleurs
 
 
@@ -58,16 +57,27 @@ int checkGroup(char grid[ROWS][COLS], int row, int col, char item) {
 
 
 // Fonction d'initialisation de la grille sans groupes de 3 ou plus
+// Initialisation de la grille sans voisins identiques
 void initializeGrid(char grid[ROWS][COLS]) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             char item;
+
+
+            // Essayer de g�n�rer un item qui respecte les contraintes
             do {
                 item = generateRandomItem();
-            } while (checkGroup(grid, i, j, item));  // Regénérer l'item s'il forme un groupe
+            } while (Aucun_Item_identique(grid,i, j, item));
+
             grid[i][j] = item;
         }
     }
+}
+
+int Aucun_Item_identique(char grid[ROWS][COLS],int ligne, int colonne, char item) {
+    if (ligne > 0 && grid[ligne - 1][colonne] == item) return 1; // Haut
+    if (colonne > 0 && grid[ligne][colonne - 1] == item) return 1; // Gauche
+    return 0; // Aucun voisin identique
 }
 
 // Fonction pour afficher la grille avec couleurs
@@ -100,33 +110,33 @@ void Score(int points, int pointsItem[nombreTotalPion], int vie, int coups) {
     printf("Vies restantes: %d | Coups restants: %d\n", vie, OBJECTIF_CONTRAT_ATTEINT - coups);
 }
 
-void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacement un item
+void Deplacement(char deplacement, int *curseurX, int *curseurY) {// d�placement un item
     switch(deplacement) {
 
-    case 'z':
-    case flecheHaut: // CODE ANSI (fleche haut)
-        if (*curseurY > 0)
-            (*curseurY)--; // deplacement vers le haut
+        case 'z':
+        case flecheHaut: // CODE ANSI (fleche haut)
+            if (*curseurY > 0)
+                (*curseurY)--; // deplacement vers le haut
         break;
 
-    case 's':
-    case flecheBas: // CODE ANSI (fleche bas)
-        if (*curseurY < ROWS - 1)
-            (*curseurY)++; // deplacement vers le bas
+        case 's':
+        case flecheBas: // CODE ANSI (fleche bas)
+            if (*curseurY < ROWS - 1)
+                (*curseurY)++; // deplacement vers le bas
         break;
 
-    case 'd':
-    case flecheDroite: // CODE ANSI (fleche droite)
-         if (*curseurX < COLS - 1)
-            (*curseurX)++; // deplacement vers la droite
-         break;
+        case 'd':
+        case flecheDroite: // CODE ANSI (fleche droite)
+             if (*curseurX < COLS - 1)
+                 (*curseurX)++; // deplacement vers la droite
+        break;
 
 
-    case 'q':
-    case flecheGauche: // CODE ANSI (fleche gauche)
-         if (*curseurX > 0)
-         (*curseurX)--; // deplacement vers la gauche
-     break;
+        case 'q':
+        case flecheGauche: // CODE ANSI (fleche gauche)
+             if (*curseurX > 0)
+                 (*curseurX)--; // deplacement vers la gauche
+        break;
     }
 }
 
