@@ -77,12 +77,13 @@ void displayGrid(char grid[ROWS][COLS]) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             // Attribution des couleurs en fonction des items
-            switch(grid[i][j]) {
+            switch (grid[i][j]) {
                 case 'S': color(14, 0); break; // Jaune pour Soleil
                 case 'F': color(4, 0); break;  // Rouge pour Fraise
                 case 'P': color(10, 0); break; // Vert pour Pomme
                 case 'O': color(6, 0); break;  // Orange pour Oignon
                 case 'M': color(5, 0); break;  // Violet pour Mandarine
+                default: color(15, 0); break;  // Blanc pour autres items
             }
             printf("%c ", grid[i][j]);
         }
