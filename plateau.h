@@ -4,19 +4,10 @@
 
 #ifndef PLATEAU_H
 #define PLATEAU_H
-/**
-#define ligne 25
-#define colonne 45
-
-//fonction
-void init_plateau();
-void display_plateau();
-**/
 
 #define ROWS 25
 #define COLS 45
 #define nombreTotalPion 5
-#include "pion.h"
 #include "Contrat_plateau.h"
 #define OBJECTIF_CONTRAT_ATTEINT 50
 
