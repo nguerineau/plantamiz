@@ -4,5 +4,5 @@
 
 #ifndef CHARGER_H
 #define CHARGER_H
-int charger(char nom[]);
+void searchRequest(const char *cheminFichier);
 #endif //CHARGER_H

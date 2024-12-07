@@ -4,6 +4,8 @@
 
 #ifndef SAUVEGARDE_H
 #define SAUVEGARDE_H
-void sauvegarde(char nom[], int niveau);
 
-#endif //SAUVEGARDE_H
+
+void sauvegarde(const char *cheminFichier,int niveau,int score);
+
+#endif // SAUVEGARDE_H
