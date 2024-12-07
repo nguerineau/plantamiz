@@ -2,14 +2,22 @@
 // Created by nicol on 10/20/2024.
 //
 
+
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#define ROWS 25
-#define COLS 45
-#define nombreTotalPion 5
 #include "Contrat_plateau.h"
+
+#define ROWS 7
+#define COLS 7
+#define nombreTotalPion 5
 #define OBJECTIF_CONTRAT_ATTEINT 50
+#define flecheHaut 72
+#define flecheDroite 77
+#define flecheGauche 75
+#define flecheBas 80
+
+
 
 
 

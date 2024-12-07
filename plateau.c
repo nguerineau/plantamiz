@@ -104,26 +104,26 @@ void Deplacement(char deplacement, int *curseurX, int *curseurY) {// déplacemen
     switch(deplacement) {
 
     case 'z':
-    case 72: // CODE ANSI (fleche haut)
+    case flecheHaut: // CODE ANSI (fleche haut)
         if (*curseurY > 0)
             (*curseurY)--; // deplacement vers le haut
         break;
 
     case 's':
-    case 80: // CODE ANSI (fleche bas)
+    case flecheBas: // CODE ANSI (fleche bas)
         if (*curseurY < ROWS - 1)
             (*curseurY)++; // deplacement vers le bas
         break;
 
     case 'd':
-    case 77: // CODE ANSI (fleche droite)
+    case flecheDroite: // CODE ANSI (fleche droite)
          if (*curseurX < COLS - 1)
             (*curseurX)++; // deplacement vers la droite
          break;
 
 
     case 'q':
-    case 75: // CODE ANSI (fleche gauche)
+    case flecheGauche: // CODE ANSI (fleche gauche)
          if (*curseurX > 0)
          (*curseurX)--; // deplacement vers la gauche
      break;
