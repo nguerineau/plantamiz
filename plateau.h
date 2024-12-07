@@ -8,8 +8,8 @@
 
 
 
-#define ROWS 7
-#define COLS 7
+#define ROWS 25
+#define COLS 45
 #define nombreTotalPion 5
 #define OBJECTIF_CONTRAT_ATTEINT 50
 #define flecheHaut 72
