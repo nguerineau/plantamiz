@@ -7,12 +7,13 @@
 
 int Menu(char nom[]) {
     int choix;
+    printf("\n");
     printf("\t bienvenue joueur : ");
     printf("\t%s\n",nom);
     printf("\t-----------------MENU-----------------\n");
     printf("\t1 - Nouvelle partie\n");
     printf("\t2 - Charger une partie\n");
-    printf("\t3 - Regles du jeu\n\n");
+    printf("\t3 - Regles du jeu\n");
     printf("\t4 - changement de nom\n\n");
     printf("\tSaisir votre choix ?\n");
     //scanf("%d", &choix);
@@ -50,14 +51,14 @@ int Menu(char nom[]) {
 
 void affichage_regle_du_jeu() {
     system("cls");
-    printf("-----------------regle du jeu-----------------\n\n");
-    printf(" Un groupe de 4 items (horizontal ou vertical) de même nature rapporte 4 points .\n\n");
-    printf(" un groupe de 6 items (horizontal ou vertical) de même nature provoque la disparition de tous les items identiques présents sur le tableau,\n");
-    printf("meme s'ils sont isoles, et remporte autant de points que d'items disparus.\n");
-    printf(" un groupe d’items de meme nature en forme de H rapporte 2*X points avec X le nombre d'items formant le H.\n\n");
-    printf(" un groupe d’items de meme nature formant un rectangle rapport  2*(L x l) points avec L = longeur et l = largeur du rectangle. \n\n");
+    printf(" -----------------regle du jeu-----------------\n\n");
+    printf(" Un groupe de 4 items (horizontal ou vertical) de meme nature rapporte 4 points .\n\n");
+    printf(" un groupe de 6 items (horizontal ou vertical) de meme nature provoque la disparition de tous les items identiques presents sur le tableau,\n");
+    printf(" meme s'ils sont isoles, et remporte autant de points que d'items disparus.\n\n");
+    printf(" un groupe d'items de meme nature en forme de H rapporte 2*X points avec X le nombre d'items formant le H.\n\n");
+    printf(" un groupe d'items de meme nature formant un rectangle rapport  2*(L x l) points avec L = longeur et l = largeur du rectangle. \n\n");
     printf("\n\n");
-    printf("Appuyez sur 'p' pour quitter.\n");
+    printf(" Appuyez sur 'p' pour quitter.\n");
 
     while (1) {
         // Boucle infinie
@@ -69,6 +70,7 @@ void affichage_regle_du_jeu() {
             }
         }
     }
+    system("cls");
 }
 
 

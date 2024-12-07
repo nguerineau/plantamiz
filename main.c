@@ -11,8 +11,9 @@
 
 int main(void) {
     char nom[50];
-    printf("\n Saisir votre nom : \n");
-    scanf("%s",&nom);
+    printf("\n\t Saisir votre nom : \n");
+    printf("\t ");
+    scanf(" %s",&nom);
     system("cls");
 
     startmenu:
