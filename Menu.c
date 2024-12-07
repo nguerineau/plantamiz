@@ -4,12 +4,13 @@
 #include "Menu.h"
 #include "windows.h"
 #include "Charger.h"
+#include "plateau.h"
+#include <stdio.h>
 
-int Menu(char nom[]) {
+int Menu() {
     int choix;
     printf("\n");
-    printf("\t bienvenue joueur : ");
-    printf("\t%s\n",nom);
+    titreMenu();
     printf("\t-----------------MENU-----------------\n");
     printf("\t1 - Nouvelle partie\n");
     printf("\t2 - Charger une partie\n");
@@ -29,15 +30,13 @@ int Menu(char nom[]) {
 
                 case 50://charger partie 2 ascii
                     printf("Vous chargez une partie !\n");
-                charger(nom);
+                //niveau = charger(nom);
                 return 2;
                 case 51://règle du jeu 3 ascii
                     printf("Voici les regles du jeu \n");
                 affichage_regle_du_jeu();
                 return 3;
-                case 52://changer de nom
 
-                return 3;
                 default:
                     printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
 
@@ -72,6 +71,23 @@ void affichage_regle_du_jeu() {
     }
     system("cls");
 }
+
+void titreMenu(){
+
+    printf(
+
+"__________ .__                     __                    .__\n"
+"\\______   \\|  |  _____     ____  _/  |_ _____     _____  |__|________\n"
+" |     ___/|  |  \\__  \\   /    \\ \\   __\\\\__  \\   /     \\ |  |\\___   / \n"
+" |    |    |  |__ / __ \\_|   |  \\ |  |   / __ \\_|  Y Y  \\|  | /    /  \n"
+" |____|    |____/(____  /|___|  / |__|  (____  /|__|_|  /|__|/_____ \\ \n"
+"                      \\/      \\/             \\/       \\/           \\/ \n\n");
+
+
+
+}
+
+
 
 
 

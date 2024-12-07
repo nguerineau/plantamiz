@@ -4,6 +4,7 @@
 #include <stdio.h>
 #ifndef MENU_H
 #define MENU_H
-int Menu(char nom[]);
+int Menu();
 void affichage_regle_du_jeu();
+void titreMenu();
 #endif //MENU_H

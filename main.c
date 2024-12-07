@@ -8,14 +8,11 @@
 #include <conio.h>
 #include "sauvegarde.h"
 #include "charger.h"
+#include "game function.h"
 
 int main(void) {
-    char nom[50];
-    printf("\n\t Saisir votre nom : \n");
-    printf("\t ");
-    scanf(" %s",&nom);
-    system("cls");
-
+    const char *cheminFichier = "../utilisateurs.txt";
+    char nom [50];
     startmenu:
 
 
@@ -25,7 +22,7 @@ int main(void) {
 
 
 
-    int opt_menu = Menu(nom);
+    int opt_menu = Menu();
 
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;
@@ -41,7 +38,7 @@ int main(void) {
         break;
 
         case 2:// charger la partie
-            niveau = charger(nom);
+
 
         break;
 
@@ -49,11 +46,7 @@ int main(void) {
             goto startmenu;
         break;
 
-        case 4:// chager de nom
-            printf("\n Saisir votre nom : \n");
-            scanf("%s",&nom);
-            goto startmenu;
-        break;
+
 
     }
 
@@ -98,7 +91,7 @@ int main(void) {
                     if (Contrats(pointsItem, coups)) {
                         printf(" vous avez rempli le contrat pour le niveau %d.\n", niveau+1);
                         niveau++;// prochain niveau
-                        sauvegarde(nom,niveau);
+                        sauvegarde(nom,niveau,0);
                         initializeGrid(grid);// réinitialiser la grille
                         points = 0; // Réinitialiser les points pour le prochain niveau
                         coups = 0; // Réinitialise le nombre de coups
@@ -118,7 +111,7 @@ int main(void) {
             }
         if (vies == 0){
             printf("Vous etez nul. Réessayez ?\n");
-            sauvegarde(nom,niveau);
+            sauvegarde(nom,niveau,0);
             goto startmenu;
         }
 
