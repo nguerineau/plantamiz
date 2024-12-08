@@ -49,6 +49,7 @@ int main(void) {
 
             char deplacement = _getch();
             if(deplacement =='p') {
+                system("cls");
                 break;
             }
             Deplacement(deplacement, &curseurX, &curseurY);
