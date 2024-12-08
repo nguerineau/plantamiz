@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sauvegarde.h"
+#include <unistd.h>
+#include "plateau.h"
 const char *cheminFichier = "../utilisateurs.txt";
 
 void sauvegarde(int niveau,int score) {
@@ -49,7 +51,7 @@ void sauvegarde(int niveau,int score) {
     fclose(fichier);
 }
 
-void charger(const char *nomRecherche) {
+int charger(const char *nomRecherche) {
     FILE *fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         printf("Erreur : impossible d'ouvrir le fichier.\n");
@@ -62,7 +64,8 @@ void charger(const char *nomRecherche) {
 
     while (fscanf(fichier, "%[^:]:%d:%d\n", nom, &niveau, &score) == 3) {
         if (strcmp(nom, nomRecherche) == 0) {
-            printf("\tDonnees trouvees : Nom = %s, Niveau = %d, Score = %d\n", nom, niveau, score);
+            printf("\n\tvotre nom est %s, vous etiez au niveau %d, avec un score de %d points.\n", nom, niveau+1, score);
+            sleep(5);
             trouve = 1;
             break;
         }
@@ -73,12 +76,13 @@ void charger(const char *nomRecherche) {
     }
 
     fclose(fichier);
+    return niveau;
 }
 
-void searchRequest() {
+int searchRequest() {
     char nomRecherche[50];
     printf("\n\tSaisir le nom a rechercher :\n\t");
     scanf(" %s", nomRecherche);
-    charger(nomRecherche);
-
+    niveau = charger(nomRecherche);
+    return niveau;
 }

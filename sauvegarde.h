@@ -7,5 +7,5 @@
 
 
 void sauvegarde(int niveau,int score);
-void searchRequest();
+int searchRequest();
 #endif // SAUVEGARDE_H
