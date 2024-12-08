@@ -3,6 +3,7 @@
 //
 #include "Menu.h"
 #include "windows.h"
+#include "plateau.h"
 #include <stdio.h>
 
 
@@ -32,12 +33,15 @@ int Menu() {
                 return 2;
                 case 51://règle du jeu 3 ascii
                     printf("Voici les regles du jeu \n");
-                affichage_regle_du_jeu();
+                    affichage_regle_du_jeu();
                 return 3;
+                case 52://rest progression 4 ascii
+                    printf("voulez vous vraiment reinitialiser votre progression?\n");
+
+                return 4;
 
                 default:
-                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
-
+                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
                 break;
             }
         }
