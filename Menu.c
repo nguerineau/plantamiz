@@ -38,7 +38,6 @@ int Menu() {
                     affichage_regle_du_jeu();
                 return 3;
                 case 52://rest progression 4 ascii
-                    printf("\tvoulez vous vraiment reinitialiser votre progression?\n");
 
                 return 4;
                 case 53://score 5 ascii
@@ -77,7 +76,6 @@ void affichage_regle_du_jeu() {
             }
         }
     }
-    system("cls");
 }
 
 void titreMenu(){

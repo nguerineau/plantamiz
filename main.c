@@ -20,6 +20,7 @@ int main(void) {
     while(TRUE) {
         switch(game) {
             case 0:
+                system("cls");
                 opt_menu = Menu();
             switch (opt_menu) {
                 case 1://nouvelle partie
@@ -37,7 +38,7 @@ int main(void) {
                 break;
                 case 4://reset
                     sauvegarde(0,0);
-                    printf("votre progression est reinitialiser");
+                printf("\tvotre progression est reinitialisee");
                     sleep(5);
                     game=0;
                 break;

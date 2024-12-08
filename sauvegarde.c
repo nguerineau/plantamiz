@@ -121,5 +121,4 @@ void afficheScores() {
             }
         }
     }
-    system("cls");
 }
