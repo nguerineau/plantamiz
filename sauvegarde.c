@@ -8,6 +8,7 @@
 #include "sauvegarde.h"
 #include <unistd.h>
 #include "plateau.h"
+
 const char *cheminFichier = "../utilisateurs.txt";
 
 void sauvegarde(int niveau,int score) {
