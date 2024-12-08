@@ -35,11 +35,12 @@ void sauvegarde(int niveau,int score) {
     char buffer[1000] = {0};
     int position = 0; //position dans le fichier
 
-    while (fscanf(fichier, "%[^:]:%d:%d\n", nomLu, &niveaulu, &scorelu) == 3) {
+    while (fscanf(fichier, "%[^:]:%d:%d\n", nomLu, &niveaulu, &scorelu) == 3) {//==3 signifie qu'il a lu correctement les 3 element demandé
         if (strcmp(nom, nomLu) == 0) { // comparée le nom à sauvegarder et le nom lu dans le fichier pour remplacer les donnée
             trouve = 1;
         }
         position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0 ? score : scorelu);
+        //
     }
 
     if (!trouve) { // si l'utilisateur n'existe pas alors on le crée
