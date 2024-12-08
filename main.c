@@ -44,7 +44,9 @@ int main(void) {
             printf("Entrez votre deplacement ===> z-q-s-d ou les fleches directionnelles pour bouger les items et espace pour valider : ");
 
             char deplacement = _getch();
-
+            if(deplacement =='p') {
+                break;
+            }
             Deplacement(deplacement, &curseurX, &curseurY);
             if (deplacement == ' ') { // valider échange avec espace
                 if (curseurX+1 < COLS) { // vérifie la validité de l'échange (dans les limites de la grille)
