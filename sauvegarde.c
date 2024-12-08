@@ -8,7 +8,7 @@
 #include "sauvegarde.h"
 #include "windows.h"
 #include <unistd.h>
-const char *cheminFichier = "../utilisateurs.txt";
+const char *cheminFichier = "utilisateurs.txt";
 
 void sauvegarde(int niveau,int score) {
     FILE *fichier = fopen(cheminFichier, "r+");
