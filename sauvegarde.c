@@ -85,6 +85,6 @@ int searchRequest() {
     char nomRecherche[50];
     printf("\n\tSaisir le nom a rechercher :\n\t");
     scanf(" %s", nomRecherche);
-    niveau = charger(nomRecherche);
+    int niveau = charger(nomRecherche);
     return niveau;
 }
