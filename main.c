@@ -41,7 +41,11 @@ int main(void) {
             AffichageCurseur(curseurX, curseurY);
             Score(points, pointsItem, vies, coups);
             ObjectifsItem(contrats[niveau].objectifsContrat, pointsItem);
-            printf("Entrez votre deplacement ===> z-q-s-d ou les fleches directionnelles pour bouger les items et espace pour valider : ");
+            printf("Entrez votre deplacement ===> z-q-s-d ou les fleches directionnelles pour bouger sur le plateau\n"
+                "pour permuter des item, mettez le curseur sur l'item puis appuyez sur espce pour le selectionner.\n"
+                "deplacer vous sur un des pions adjacent puis appuyer sur espace pour permutter les pions\n\n"
+                "appuyer sur la touche p pour quittez la partie et revenir au menue.\n"
+                "attention votre progression durant le niveau ne sera pas sauvegarder");
 
             char deplacement = _getch();
             if(deplacement =='p') {
