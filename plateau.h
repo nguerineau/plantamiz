@@ -27,6 +27,9 @@ enum pion {
 };
 
 
+
+void permuterItems(int *curseurX, int *curseurY, int *selectionX, int *selectionY,char grid[ROWS][COLS], int *points, int pointsItem[nombreTotalPion]);
+int getItemIndex(char item);
 void color(int couleurDuTexte, int couleurDeFond);
 char generateRandomItem();
 int checkGroup(char grid[ROWS][COLS], int row, int col, char item);
@@ -42,10 +45,10 @@ void TomberItems(char grid[ROWS][COLS]);
 void AffichageCurseur(int curseurX, int curseurY);
 void Deplacement(char deplacement, int *curseurX, int *curseurY);
 
-void Score(int points, int pointsItem[nombreTotalPion], int vie, int coups);
-void ObjectifsItem (int objectifs[nombreTotalPion], int pointsItem[nombreTotalPion]);
+int Score(int points, const int pointsItem[nombreTotalPion], int vies, int coups, const int objectifsContrat[nombreTotalPion]);
+void ObjectifsItem(const int objectifsContrat[nombreTotalPion], const int pointsItem[nombreTotalPion]);
 void initializeGrid(char grid[ROWS][COLS]);
-void displayGrid(char grid[ROWS][COLS]);
+void displayGrid(char grid[ROWS][COLS],int curseurX, int curseurY);
 int Aucun_Item_identique(char grid[ROWS][COLS],int ligne, int colonne, char item);
 extern ContratPlateau contrats[];
 extern int nombreContrat;

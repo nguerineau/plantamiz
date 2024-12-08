@@ -16,7 +16,8 @@ int Menu() {
     printf("\t2 - Charger une partie\n");
     printf("\t3 - Regles du jeu\n");
     printf("\t4 - reinitialiser la sauvegarde\n");
-    printf("\tSaisir votre choix ?\n");
+    printf("\t5 - hall of fame\n");
+    printf("\tSaisir votre choix ?\n\n");
     //scanf("%d", &choix);
     while (1) {
         // Boucle infinie
@@ -25,24 +26,28 @@ int Menu() {
             switch (choix) {
 
                 case 49://nouvelle partie 1 ascii
-                    printf("Vous lancez une nouvelle partie !\n");
+                    printf("\tVous lancez une nouvelle partie !\n");
                 return 1;
 
                 case 50://charger partie 2 ascii
-                    printf("Vous chargez une partie !\n");
+                    printf("\tVous chargez une partie !\n");
                 //niveau = charger(nom);
                 return 2;
                 case 51://règle du jeu 3 ascii
-                    printf("Voici les regles du jeu \n");
+                    printf("\tVoici les regles du jeu \n");
                     affichage_regle_du_jeu();
                 return 3;
                 case 52://rest progression 4 ascii
-                    printf("voulez vous vraiment reinitialiser votre progression?\n");
+                    printf("\tvoulez vous vraiment reinitialiser votre progression?\n");
 
                 return 4;
+                case 53://score 5 ascii
+                    printf("\tvoici les scores\n");
+
+                return 5;
 
                 default:
-                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+                    printf("Choix invalide. Veuillez entrer un nombre entre 1 et 5.\n");
                 break;
             }
         }

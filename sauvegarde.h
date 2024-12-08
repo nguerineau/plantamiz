@@ -8,4 +8,5 @@
 
 void sauvegarde(int niveau,int score);
 int searchRequest();
+void afficheScores();
 #endif // SAUVEGARDE_H

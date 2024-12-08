@@ -6,9 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sauvegarde.h"
+#include "windows.h"
 #include <unistd.h>
-#include "plateau.h"
-
 const char *cheminFichier = "../utilisateurs.txt";
 
 void sauvegarde(int niveau,int score) {
@@ -39,8 +38,12 @@ void sauvegarde(int niveau,int score) {
         if (strcmp(nom, nomLu) == 0) { // comparée le nom à sauvegarder et le nom lu dans le fichier pour remplacer les donnée
             trouve = 1;
         }
-        position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0 ? score : scorelu);
-        //
+        if (score ==-1 ) {
+            position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0);
+        }
+        else {
+            position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0 ? score : scorelu);
+        }
     }
 
     if (!trouve) { // si l'utilisateur n'existe pas alors on le crée
@@ -67,7 +70,6 @@ int charger(const char *nomRecherche) {
     while (fscanf(fichier, "%[^:]:%d:%d\n", nom, &niveau, &score) == 3) {
         if (strcmp(nom, nomRecherche) == 0) {
             printf("\n\tvotre nom est %s, vous etiez au niveau %d, avec un score de %d points.\n", nom, niveau+1, score);
-            sleep(5);
             trouve = 1;
             break;
         }
@@ -87,4 +89,37 @@ int searchRequest() {
     scanf(" %s", nomRecherche);
     int niveau = charger(nomRecherche);
     return niveau;
+}
+
+void afficheScores() {
+    FILE *fichier = fopen(cheminFichier, "r");
+    if (!fichier) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return;
+    }
+
+    char nomLu[50];  // Variable pour le nom
+    int niveaulu, scorelu;  // Variables pour le niveau et le score
+    system("cls");
+    printf("\n\tListe des scores :\n");
+    printf("\t===================\n");
+
+    // Parcourt chaque ligne et affiche les informations
+    while (fscanf(fichier, "%[^:]:%d:%d\n", nomLu, &niveaulu, &scorelu) == 3) {
+        printf("\tNom : %s, Niveau : %d, Score : %d\n", nomLu, niveaulu, scorelu);
+    }
+
+    fclose(fichier);
+
+    while (1) {
+        // Boucle infinie
+        if (_kbhit()) { // Vérifie si une touche est pressée alternative scanf pour une touche saisie
+            char c = _getch(); // Récupère la touche pressée
+            if (c == 'p') {// si la touche p à été appuyez
+                printf("\nSortie des regle du jeu.\n");
+                break; // Quitte la boucle
+            }
+        }
+    }
+    system("cls");
 }
