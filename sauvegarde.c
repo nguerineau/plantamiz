@@ -38,12 +38,7 @@ void sauvegarde(int niveau,int score) {
         if (strcmp(nom, nomLu) == 0) { // comparée le nom à sauvegarder et le nom lu dans le fichier pour remplacer les donnée
             trouve = 1;
         }
-        if (score ==-1 ) {
-            position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0);
-        }
-        else {
-            position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0 ? score : scorelu);
-        }
+        position += sprintf(buffer + position, "%s:%d:%d\n", strcmp(nom, nomLu) == 0 ? nom : nomLu, strcmp(nom, nomLu) == 0 ? niveau : niveaulu, strcmp(nom, nomLu) == 0 ? score : scorelu);
     }
 
     if (!trouve) { // si l'utilisateur n'existe pas alors on le crée
