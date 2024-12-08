@@ -6,6 +6,6 @@
 #define SAUVEGARDE_H
 
 
-void sauvegarde(const char *cheminFichier,int niveau,int score);
-void searchRequest(const char *cheminFichier);
+void sauvegarde(int niveau,int score);
+void searchRequest();
 #endif // SAUVEGARDE_H

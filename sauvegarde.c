@@ -6,8 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sauvegarde.h"
+const char *cheminFichier = "../utilisateurs.txt";
 
-void sauvegarde(const char *cheminFichier,int niveau,int score) {
+void sauvegarde(int niveau,int score) {
     FILE *fichier = fopen(cheminFichier, "r+");
     if (fichier == NULL) {
         fichier = fopen(cheminFichier, "w");
@@ -48,7 +49,7 @@ void sauvegarde(const char *cheminFichier,int niveau,int score) {
     fclose(fichier);
 }
 
-void charger(const char *cheminFichier, const char *nomRecherche) {
+void charger(const char *nomRecherche) {
     FILE *fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         printf("Erreur : impossible d'ouvrir le fichier.\n");
@@ -74,10 +75,10 @@ void charger(const char *cheminFichier, const char *nomRecherche) {
     fclose(fichier);
 }
 
-void searchRequest(const char *cheminFichier) {
+void searchRequest() {
     char nomRecherche[50];
     printf("\n\tSaisir le nom a rechercher :\n\t");
     scanf(" %s", nomRecherche);
-    charger(cheminFichier, nomRecherche);
+    charger(nomRecherche);
 
 }

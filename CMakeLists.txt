@@ -12,6 +12,4 @@ add_executable(plantamiz main.c
         plateau.c
         main.c
         sauvegarde.c
-        Charger.c
-        Charger.h
 )

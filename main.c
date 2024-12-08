@@ -6,10 +6,9 @@
 #include "Menu.h"
 #include <conio.h>
 #include "sauvegarde.h"
-#include "Charger.h"
 
 int main(void) {
-    const char *cheminFichier = "../utilisateurs.txt";
+
     char nom [50];
     startmenu:
 
@@ -21,7 +20,7 @@ int main(void) {
 
 
     int opt_menu = Menu();
-
+    sauvegarde(niveau,0);
     char grid[ROWS][COLS];
     int curseurX = 0, curseurY = 0;
 
@@ -69,7 +68,7 @@ int main(void) {
             if (Contrats(pointsItem, coups)) {
                 printf(" vous avez rempli le contrat pour le niveau %d.\n", niveau+1);
                 niveau++;// prochain niveau
-                sauvegarde(nom,niveau,0);
+                sauvegarde(niveau,0);
                 initializeGrid(grid);// réinitialiser la grille
                 points = 0; // Réinitialiser les points pour le prochain niveau
                 coups = 0; // Réinitialise le nombre de coups
@@ -89,7 +88,7 @@ int main(void) {
 
         if (vies == 0){
             printf("Vous etez nul. Réessayez ?\n");
-            sauvegarde(nom,niveau,0);
+            sauvegarde(niveau,0);
             goto startmenu;
         }
     }

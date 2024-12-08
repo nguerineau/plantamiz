@@ -3,9 +3,8 @@
 //
 #include "Menu.h"
 #include "windows.h"
-#include "Charger.h"
-#include "plateau.h"
 #include <stdio.h>
+
 
 int Menu() {
     int choix;
